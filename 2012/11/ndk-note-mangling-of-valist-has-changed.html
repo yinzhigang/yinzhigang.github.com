@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Octopress - 殷志刚</title>
+	<title>NDK note: the mangling of 'va_list' has changed in GCC 4.4 - 殷志刚</title>
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content="Category: Octopress">
+	<meta name="description" content="最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：In file included from jni/fskmodule.cpp:7:0:/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,28 +75,49 @@
 	
 		
 	
-	<div id="content" class="inner">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">NDK Note: The Mangling of 'Va_list' Has Changed in GCC 4.4</h2>
+	<div class="entry-content"><div class='post'>
+<p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-13T18:05:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/ndk/'>NDK</a>
+
+
+</div>
 	
+</div></article>
 
-
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
 	
-	<section class="archives"><h1 class="year">2012</h1>
-
-<article>
-	<h2 class="title"><a href="/2012/12/octopress-ce-shi.html">Octopress 测试</a></h2>
-	<div class="meta">
-		<span class="date">Dec  3</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</span>
-	    
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
 
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2012

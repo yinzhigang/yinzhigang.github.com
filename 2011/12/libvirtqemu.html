@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Octopress - 殷志刚</title>
+	<title>libvirt与qemu 几个常用命令 - 殷志刚</title>
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content="Category: Octopress">
+	<meta name="description" content="克隆一个虚拟机：virt-clone -o formdomain -n todomain -f /path/filename.img转换镜像格式：qemu-img convert -O qcow2 filename.img filename.qcow2支持的格式：raw、qcow、qcow2、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,28 +75,49 @@
 	
 		
 	
-	<div id="content" class="inner">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Libvirt与qemu 几个常用命令</h2>
+	<div class="entry-content"><div class='post'>
+<h2>克隆一个虚拟机：</h2><pre>virt-clone -o formdomain -n todomain -f /path/filename.img</pre><h2>转换镜像格式：</h2><pre>qemu-img convert -O qcow2 filename.img filename.qcow2</pre><p>支持的格式：raw、qcow、qcow2、vmdk、vdi</p><h2>查看一个镜像的信息：</h2><pre>qcmu-img info filename.img</pre><h2>调整镜像大小</h2><pre>qemu-img resize filename.img +|-size</pre></div>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-31T19:30:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
 	
+</div></article>
 
-
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
 	
-	<section class="archives"><h1 class="year">2012</h1>
-
-<article>
-	<h2 class="title"><a href="/2012/12/octopress-ce-shi.html">Octopress 测试</a></h2>
-	<div class="meta">
-		<span class="date">Dec  3</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</span>
-	    
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
 
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2012

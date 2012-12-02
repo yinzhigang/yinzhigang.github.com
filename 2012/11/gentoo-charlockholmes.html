@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Octopress - 殷志刚</title>
+	<title>Gentoo 安装 charlock_holmes - 殷志刚</title>
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content="Category: Octopress">
+	<meta name="description" content="最近折腾gitlab + gitolite，安装到charlock_holmes一步出现一堆 undefined reference 错误，官方网站也有这么一个issue。解决办法：修改/usr/lib64/ruby/1.9.1/x86_64-linux/rbconfig.rb，删除CONFIG &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,28 +75,49 @@
 	
 		
 	
-	<div id="content" class="inner">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Gentoo 安装 Charlock_holmes</h2>
+	<div class="entry-content"><div class='post'>
+<p>最近折腾gitlab + gitolite，安装到charlock_holmes一步出现一堆 undefined reference 错误，官方网站也有这么一个<a href="https://github.com/brianmario/charlock_holmes/issues/10" target="_blank">issue</a>。</p><p>解决办法：修改/usr/lib64/ruby/1.9.1/x86_64-linux/rbconfig.rb，删除CONFIG[&#8220;LDFLAGS&#8221;] 一行最后的“-Wl,&#8211;no-undefined”，具体原因未知。</p></div>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-15T18:07:00+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/git/'>Git</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
 	
+</div></article>
 
-
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
 	
-	<section class="archives"><h1 class="year">2012</h1>
-
-<article>
-	<h2 class="title"><a href="/2012/12/octopress-ce-shi.html">Octopress 测试</a></h2>
-	<div class="meta">
-		<span class="date">Dec  3</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</span>
-	    
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
 
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2012

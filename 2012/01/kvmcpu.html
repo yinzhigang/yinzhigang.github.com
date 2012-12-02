@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Octopress - 殷志刚</title>
+	<title>KVM使用原生CPU - 殷志刚</title>
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content="Category: Octopress">
+	<meta name="description" content="默认情况下 CentOS 6 安装虚拟机后的CPU是：QEMU Virtual CPU，一般使用是没有问题的，只是性能低下，PHP一个10万次循环的脚本居然需要执行50多秒，而母系统执行只需2秒多，差距有点儿太大。# virsh edit vm_name&lt;domain type='kvm &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,28 +75,49 @@
 	
 		
 	
-	<div id="content" class="inner">
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">KVM使用原生CPU</h2>
+	<div class="entry-content"><div class='post'>
+默认情况下 CentOS 6 安装虚拟机后的CPU是：QEMU Virtual CPU，一般使用是没有问题的，只是性能低下，PHP一个10万次循环的脚本居然需要执行50多秒，而母系统执行只需2秒多，差距有点儿太大。<br /><pre># virsh edit vm_name<br />&lt;domain type='kvm'&gt;<br />  ......<br />  &lt;qemu:commandline&gt;<br />    &lt;qemu:arg value='-cpu'/&gt;<br />    &lt;qemu:arg value='host'/&gt;<br />  &lt;/qemu:commandline&gt;<br />&lt;/domain&gt;<br /></pre>一般建议使用 virsh edit 编辑虚拟机配置文件，避免文件被破坏。</div>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-18T18:30:00+08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/kvm/'>KVM</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</div>
 	
+</div></article>
 
-
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 	
 	
-	<section class="archives"><h1 class="year">2012</h1>
-
-<article>
-	<h2 class="title"><a href="/2012/12/octopress-ce-shi.html">Octopress 测试</a></h2>
-	<div class="meta">
-		<span class="date">Dec  3</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</span>
-	    
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
 
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2012

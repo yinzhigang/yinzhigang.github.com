@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | 殷志刚]]></title>
+  <link href="http://yinzhigang.github.com/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://yinzhigang.github.com/"/>
+  <updated>2012-12-03T01:36:27+08:00</updated>
+  <id>http://yinzhigang.github.com/</id>
+  <author>
+    <name><![CDATA[殷志刚]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[NDK(jni) JAVA与C互传数组对象]]></title>
+    <link href="http://yinzhigang.github.com/2012/11/ndkjni-javac.html"/>
+    <updated>2012-11-16T23:57:00+08:00</updated>
+    <id>http://yinzhigang.github.com/2012/11/ndkjni-javac</id>
+    <content type="html"><![CDATA[<div class='post'>
+<p>最近在搞NDK底层一些功能的开发，被一个问题折腾了3天，起初一直以为是C这边的位运算出了问题，查到最后才发现是数组传递出了问题，一开始我是这样写的：</p><blockquote><pre>void Java_com_xxx_test1(JNIEnv* env, jobject thiz, jint* javaArray, jint array_size) {<br />    other_function((int *)javaArray, (int)array_size);<br />}</pre></blockquote><p>真正正确的写法应该是这样：</p><blockquote><pre>void Java_com_xxx_test1(JNIEnv* env, jobject thiz, jintArray* javaArray) {<br />    // For C<br />    jint* pJint = (*env)-&gt;GetByteArrayElements(env, javaArray, 0);<br />    jsize array_size = (*env)-&gt;GetArrayLength(env, javaArray);<br />    // For C++<br />    // jint* pJint = env-&gt;GetByteArrayElements(javaArray, 0);<br />    // jsize array_size = env-&gt;GetArrayLength(javaArray);<br />    other_function((int *)pJint, array_size);<br />}</pre></blockquote><p>理论上讲这个问题应该是很容易发现的，但我为什么纠结了这么久呢，因为在之前我的另一段类似的代码中是工作正常的，像这样：</p><blockquote><pre>void Java_com_xxx_test2(JNIEnv* env, jobject thiz, jint* javaArray, jint array_size) {<br />    int a[10]; // 假设 array_size 一定会小于10<br />    int i;<br />    for (int = 0; i &lt; array_size; i++)<br />    {<br />        a[i] = (int)javaArray[i];<br />    }<br />}</pre></blockquote><p>所以我一直认为第一种写法是正确的，害死人啊。</p><p>C回传数组给JAVA是这样做的：</p><blockquote><pre>jintArray Java_com_xxx_test3(JNIEnv* env, jobject thiz) {<br />    int a = {1, 2, 3, 4};<br />    jbyteArray result;<br />    result = (*env)-&gt;NewByteArray(env, 4);<br />    (*env)-&gt;SetIntArrayRegion(env, result, 0, 4, a);<br />    // For C++<br />    // result = env-&gt;NewByteArray(4);<br />    // env-&gt;setIntArrayRegion(result, 0, 4, a);<br />    return result<br />}</pre></blockquote></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NDK note: the mangling of 'va_list' has changed in GCC 4.4]]></title>
+    <link href="http://yinzhigang.github.com/2012/11/ndk-note-mangling-of-valist-has-changed.html"/>
+    <updated>2012-11-13T18:05:00+08:00</updated>
+    <id>http://yinzhigang.github.com/2012/11/ndk-note-mangling-of-valist-has-changed</id>
+    <content type="html"><![CDATA[<div class='post'>
+<p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
+
+]]></content>
+  </entry>
+  
+</feed>

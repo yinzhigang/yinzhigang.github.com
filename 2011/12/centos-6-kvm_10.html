@@ -1,0 +1,155 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CentOS 6 安装配置KVM小记 - 殷志刚</title>
+	<meta name="author" content="殷志刚">
+
+	
+	<meta name="description" content="作为一名半调子系统管理员，XEN那dom0,domU还要编译内核，这简直要了我的亲命，KVM作为一个CentOS 6开始唯一内置支持的虚拟化，安装配置简单，很适合我。安装：KVM需要CPU支持vmx(Intel)或svm(AMD)。$ cat /proc/cpuinfo | egrep 'vmx &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="殷志刚" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">殷志刚</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:yinzhigang.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/yinzhigang?rel=author" title="Google+">Google+</a>
+		
+		
+		
+		<a class="github" href="https://github.com/yinzhigang" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:yinzhigang.github.com">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">CentOS 6 安装配置KVM小记</h2>
+	<div class="entry-content"><div class='post'>
+作为一名半调子系统管理员，XEN那dom0,domU还要编译内核，这简直要了我的亲命，KVM作为一个CentOS 6开始唯一内置支持的虚拟化，安装配置简单，很适合我。<br /><h2>安装：</h2>KVM需要CPU支持vmx(Intel)或svm(AMD)。<br /><pre>$ cat /proc/cpuinfo | egrep 'vmx|svm'<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save</pre>安装KVM组件<br /><pre># yum groupinstall&nbsp;Virtualization<br /># yum groupinstall&nbsp;"Virtualization Platform"</pre>重启后检查是否安装成功，若使用Intel CPU会显示 kvm_intel。<br /><pre># lsmod | grep kvm<br />kvm_amd &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;37434 &nbsp;4&nbsp;<br />kvm &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 292815 &nbsp;1 kvm_amd</pre>OK，就这么简单，KVM安装完成。<br /><h2>周边工具：</h2>virt-manger与virt-viewer是基于X Window的图形化管理工具，优点呢就是操作简单、鼠标点点，坏处自然就是要装一堆图形组件，对于服务器来说这些东西有些太多余。<br />服务器上最好用的当然是命令行工具<br /><pre>yum install libvirt-client&nbsp;python-virtinst</pre>libvirt-client 提供了 virsh，主要功能为：启动、重启、停止等管理功能。<br />python-virtinst 提供了 virt-install 安装工具。<br /><h2>安装虚拟机</h2><pre>#&amp;nbsp;virt-install \<br />--name gentoo6 \<br />--ram 512 \<br />--vcpus=1 \<br />--disk path=/var/vps/gentoo6.img,size=4 \<br />--network network:default \<br />--os-variant=generic26 \<br />--accelerate \<br />--cdrom /var/vps/install-amd64-minimal-20111201.iso \<br />--vnc \<br />--vncport=5911 \<br />--vnclisten=0.0.0.0</pre>&#8211;name 指定虚拟机名称，virsh操作指定虚拟机时所需要的参数，不可以重复。<br />&#8211;ram 分配内存大小，安装完成后可以用 virsh 调整。<br />&#8211;vcpus 分配CPU核心数，最大与实体机CPU核心数相同，安装完成后也可以用 virsh 调整。<br />&#8211;disk 指定虚拟机镜像， size 指定分配大小单位为G。<br />&#8211;network 网络类型，此处用的是默认，一般用的应该是&nbsp;bridge 桥接，这个下次再说。<br />&#8211;os-variant 指定操作系统类型，此处使用的是标准Linux 2.6，其他的可以通过 man virt-install 详细查看。<br />&#8211;accelerate 呃，加速，具体什么原理还不太清楚。<br />&#8211;cdrom 指定安装镜像所在。<br />&#8211;vnc 启用VNC远程管理，一般安装系统都要启用。<br />&#8211;vncport 指定 VNC 监控端口，默认端口为 5900。<br />&#8211;vnclisten 指定 VNC 绑定IP，默认绑定127.0.0.1，这里将其改为 0.0.0.0 以便可以通过外部连接。<br />执行后如果没有安装 virt-viewer 或没有 X Window 系统可能会提示 virt-viewer 启动失败，不过没关系，使用 VNC Viewer 或者 MAC 下使用Chicken of the VNC连接到实体机，端口使用上面指定的就可以操作安装过程。另外需要注意的是，某些系统安装盘有等待输入时间，超过时间会自动使用硬盘启动，所以VNC连接一定要快，否则就需要 virsh&nbsp;destroy 然后 virsh start 再启动，因为系统尚未安装成功，此时的 virsh reboot 执行是无效的。<br /><h2>virsh 常用命令</h2>virsh list 列出当前虚拟机列表，貌似不包括未启动的。<br />virsh start domain-name 启动指定虚拟机。<br />virsh shutdown domain-name 停止指定虚拟机，执行此命令后 virsh list 里将不出现。<br />virsh reboot domain-name 重新启动指定虚拟机，这个命令貌似必须系统安装完成后才有效。<br />virsh autostart domain-name 指定虚拟机开机自动启动，需要 libvirtd 服务默认启动。<br />还有更多，一时也没全搞明白，全写出来估计可以写本手册了。<br /><h2>其他</h2>虚拟机配置存储在 /etc/libvirt/qemu 目录，配置文件为XML格式。<br />自动启动的虚拟机在 /etc/libvirt/qemu/autostart 目录。</div>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-10T18:30:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/centos/'>CentOS</a>, <a class='category' href='/blog/categories/kvm/'>KVM</a>, <a class='category' href='/blog/categories/虚拟化/'>虚拟化</a>
+
+
+</div>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2012
+
+    殷志刚
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'yinzhigang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>
