@@ -476,6 +476,58 @@ column 15 (char 15)
 	
 </div></article>
 
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2010/04/svn-cant-move-dot-svn-slash-tmp-slash-entries-to-dot-svn-slash-entries-operation-not-permitted.html">
+		
+			Svn: Can&#8217;t Move &#8216;.svn/tmp/entries&#8217; to &#8216;.svn/entries&#8217;: Operation Not Permitted</a>
+	</h2>
+	<div class="entry-content">
+		<p>SVN 总是在 Mac OS 下出现这句错误提示，这个问题一般在与 Windows 共用一个目录，并在 Windows 下进行过 svn up 操作后，<a href="http://www.devcha.com/2008/03/mac-os-cant-move-svntmpentries-to.html">老外</a>对此给出了解决方法，但是最近这个站点在国内经常打不开，在此记一笔为自己备记。</p>
+
+<p>进入项目目录执行：</p>
+
+<pre><code>chflags -R nouchg .
+</code></pre>
+
+<p>老外给的方法是：</p>
+
+<pre><code>chflags -R nouchg *
+</code></pre>
+
+<p>但是有时会依然会无法解决问题，两种方法都试试吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-04-09T18:27:41+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2010</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mac-os/'>Mac OS</a>, <a class='category' href='/blog/categories/svn/'>SVN</a>
+
+
+</div>
+	
+</div></article>
+
 <nav id="pagenavi">
     
     
