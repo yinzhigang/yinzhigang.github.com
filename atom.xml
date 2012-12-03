@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[殷志刚]]></title>
-  <link href="http://yinzhigang.github.com/atom.xml" rel="self"/>
-  <link href="http://yinzhigang.github.com/"/>
-  <updated>2012-12-03T01:36:27+08:00</updated>
-  <id>http://yinzhigang.github.com/</id>
+  <link href="http://www.zhigang.net/atom.xml" rel="self"/>
+  <link href="http://www.zhigang.net/"/>
+  <updated>2012-12-03T22:33:12+08:00</updated>
+  <id>http://www.zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
     
@@ -15,18 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress 测试]]></title>
-    <link href="http://yinzhigang.github.com/2012/12/octopress-ce-shi.html"/>
+    <link href="http://www.zhigang.net/2012/12/octopress-ce-shi.html"/>
     <updated>2012-12-03T00:10:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2012/12/octopress-ce-shi</id>
+    <id>http://www.zhigang.net/2012/12/octopress-ce-shi</id>
     <content type="html"><![CDATA[<p>第一次使用 Octopress，看起来是我喜欢的风格，希望可以让我继续写下去。</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[GitLab 官方安装文档中文翻译]]></title>
-    <link href="http://yinzhigang.github.com/2012/11/gitlab.html"/>
+    <link href="http://www.zhigang.net/2012/11/gitlab.html"/>
     <updated>2012-11-18T22:03:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2012/11/gitlab</id>
+    <id>http://www.zhigang.net/2012/11/gitlab</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>译者注：gitlabhq + gitolite是目前为止个人认为最好用的 git 中心库管理系统，但是其安装配置不是一般的复杂，找了半天没发现完整的中文安装文档，只好依靠自己蹩脚的英文班门弄斧下，若有错误还请见谅。</p><p>原文地址：<a href="https://github.com/gitlabhq/gitlabhq/blob/stable/doc/installation.md">https://github.com/gitlabhq/gitlabhq/blob/stable/doc/installation.md</a></p><p>译者：殷志刚</p><h2>平台需求：</h2><p><strong>此项目被设计用于Linux操作系统。</strong></p><p>也许可以工作在 FreeBSD 与 Mac OS 系统，但我们无法保证系统稳定性与功能完整性。</p><p>官方支持的 Linux 发行版：</p><ul><li>Ubuntu Linux</li><li>Debian/GNU Linux</li></ul><p>它应该工作于：</p><ul><li>Fedora</li><li>CentOS</li><li>RedHat</li></ul><p>你使用这些系统需要些运气，但不保证稳定性：</p><ul><li>MacOS X</li><li>FreeBSD</li></ul><p>GitLab 不能运行于 Windows 并且我们也没有支持的计划。</p><h2>硬件需求：</h2><p>我们推荐至少 1GB 内容用于 gitlab 实例。</p><h2>本安装指南已于 Debian/Ubuntu 测试通过。</h2><ul><li>安装总共需要6步：</li><li>安装依赖包</li><li>安装 Ruby</li><li>安装 Gitolite</li><li>安装与配置 GitLab</li><li>启动前端Web服务器</li><li>启动Resque进行（用于后台任务）</li></ul><h3>重要信息</h3><p>在你发邮件列表询问安装与配置问题之前请确认你已经根据本文完成了所有步骤。</p><p>Only create a GitHub Issue if you want a specific part of this installation guide updated.</p><p>Also read the Read this before you submit an issue wiki page.</p><blockquote><p>使用这个安装脚本可以轻易的跳过前3个步骤。</p><pre># 安装 curl 与 sudo<br />apt-get install curl sudo<br /><br /># 三合一命令 :)<br />curl https://raw.github.com/gitlabhq/gitlab-recipes/master/install/debian_ubuntu.sh | sh<br /></pre><p>现在你可以直接到到第四步</p><p>如果你在 Amazon Web Services 使用 Ubuntu 12.04，你可以使用一个命令跳过所有步骤(1-6)</p><pre>curl https://raw.github.com/gitlabhq/gitlab-recipes/master/install/debian_ubuntu_aws.sh | sh</pre><p>更多详细信息，你可以阅读<a href="https://github.com/gitlabhq/gitlab-recipes/blob/master/install/debian_ubuntu_aws.sh">此脚本</a>的 HOWTO 部分。</p></blockquote><h1>1. 安装依赖包</h1><p>请记住，Debian 默认并没有安装 sudo，请使用 root 安装它：</p><blockquote><pre>apt-get update &amp;&amp; apt-get upgrade &amp;&amp; apt-get install sudo</pre></blockquote><p>现在你可以安装必须包：</p><blockquote><pre>sudo apt-get update<br />sudo apt-get upgrade<br /><br />sudo apt-get install -y wget curl gcc checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev libreadline6-dev libc6-dev libssl-dev libmysql++-dev make build-essential zlib1g-dev libicu-dev redis-server openssh-server git-core python-dev python-pip libyaml-dev postfix libpq-dev</pre></blockquote><h1>数据库</h1><h2>SQLite</h2><blockquote><pre>sudo apt-get install -y sqlite3 libsqlite3-dev</pre></blockquote><h2>MySQL</h2><blockquote><pre>sudo apt-get install -y mysql-server mysql-client libmysqlclient-dev<br /><br /># Login to MySQL<br />$ mysql -u root -p<br /><br /># Create the GitLab production database<br />mysql&gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;<br /><br /># Create the MySQL User change $password to a real password<br />mysql&gt; CREATE USER 'gitlab'@'localhost' IDENTIFIED BY '$password';<br /><br /># Grant proper permissions to the MySQL User<br />mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER ON `gitlabhq_production`.* TO 'gitlab'@'localhost';</pre></blockquote><h2>PostgreSQL</h2><blockquote><pre>sudo apt-get install -y postgresql-9.2 postgresql-server-dev-9.2<br /><br /># Connect to database server<br />sudo -u postgres psql -d template1<br /><br /># Add a user called gitlab. Change $password to a real password<br />template1=# CREATE USER gitlab WITH PASSWORD '$password';<br /><br /># Create the GitLab production database<br />template1=# CREATE DATABASE IF NOT EXISTS gitlabhq_production;<br /><br /># Grant all privileges on database<br />template1=# GRANT ALL PRIVILEGES ON DATABASE gitlabhq_production to gitlab;<br /><br /># Quit from PostgreSQL server<br />template1=# \q<br /><br /># Try connect to new database<br />$ su - gitlab<br />$ psql -d gitlabhq_production -U gitlab</pre></blockquote><p>(译者注：以上3种数据库根据需要安装其一即可)</p><h1>2. 安装 Ruby</h1><blockquote><pre>wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p194.tar.gz<br />tar xfvz ruby-1.9.3-p194.tar.gz<br />cd ruby-1.9.3-p194<br />./configure<br />make<br />sudo make install</pre></blockquote><h1>3. 安装 Gitolite</h1><p>为 Git 创建用户：</p><blockquote><pre>sudo adduser \<br />  --system \<br />  --shell /bin/sh \<br />  --gecos 'git version control' \<br />  --group \<br />  --disabled-password \<br />  --home /home/git \<br />  git</pre></blockquote><p>为 GitLab 创建用户：</p><blockquote><pre># ubuntu/debian<br />sudo adduser --disabled-login --gecos 'gitlab system' gitlab</pre></blockquote><p>将 gitlab 用户添加到 git 用户组：</p><blockquote><pre>sudo usermod -a -G git gitlab</pre></blockquote><p>将 git 用户添加到 gitlab 用户组：</p><blockquote><pre>sudo usermod -a -G gitlab git</pre></blockquote><p>生成密钥：</p><blockquote><pre>sudo -H -u gitlab ssh-keygen -q -N '' -t rsa -f /home/gitlab/.ssh/id_rsa</pre></blockquote><p>克隆 GitLab 的 Gitolite 分支源代码：</p><blockquote><pre>sudo -H -u git git clone -b gl-v304 https://github.com/gitlabhq/gitolite.git /home/git/gitolite</pre></blockquote><p>安装：</p><blockquote><pre>cd /home/git<br />sudo -u git -H mkdir bin<br />sudo -u git sh -c 'echo -e "PATH=\$PATH:/home/git/bin\nexport PATH" &gt;&gt; /home/git/.profile'<br />sudo -u git sh -c 'gitolite/install -ln /home/git/bin'<br /><br />sudo cp /home/gitlab/.ssh/id_rsa.pub /home/git/gitlab.pub<br />sudo chmod 0444 /home/git/gitlab.pub<br /><br />sudo -u git -H sh -c "PATH=/home/git/bin:$PATH; gitolite setup -pk /home/git/gitlab.pub"</pre></blockquote><p>权限：</p><blockquote><pre>sudo chmod -R g+rwX /home/git/repositories/<br />sudo chown -R git:git /home/git/repositories/</pre></blockquote><h4>检查：退出并重新登录以使 git 用户组生效</h4><blockquote><pre># 克隆 admin 资源库以将 localhost 添加到 known_hosts<br /># 并且确认 gitlab 用户有权访问 gitolite<br />sudo -u gitlab -H git clone git@localhost:gitolite-admin.git /tmp/gitolite-admin<br /><br /># 如果执行成功，你可以将其删除<br />sudo rm -rf /tmp/gitolite-admin</pre></blockquote><p><strong>重要！ 如果你不能克隆 gitolite-admin 资源库，请不要继续本次安装</strong>，请根据 <a href="https://github.com/gitlabhq/gitlab-public-wiki/wiki/Trouble-Shooting-Guide" target="_blank">Trouble Shooting Guide</a> 并且确认你已经小心的完成上文的全部步骤。</p><h1>4. 克隆 GitLab 源代码并安装先决条件</h1><blockquote><pre>sudo gem install charlock_holmes --version '0.6.8'<br />sudo pip install pygments<br />sudo gem install bundler<br />cd /home/gitlab<br /><br /># Get gitlab code. Use this for stable setup<br />sudo -H -u gitlab git clone -b stable https://github.com/gitlabhq/gitlabhq.git gitlab<br /><br /># Skip this for stable setup.<br /># Master branch (recent changes, less stable)<br />sudo -H -u gitlab git clone -b master https://github.com/gitlabhq/gitlabhq.git gitlab<br /><br />cd gitlab<br /><br /># Rename config files<br />sudo -u gitlab cp config/gitlab.yml.example config/gitlab.yml</pre></blockquote><p>(译者注：本人在安装 charlock_holmes 时遇到了点儿麻烦，解决办法见<a href="http://www.zhigang.net/2012/11/gentoo-charlockholmes.html">这里</a>）</p><h4>选择你希望使用的数据库</h4><blockquote><pre># SQLite<br />sudo -u gitlab cp config/database.yml.sqlite config/database.yml<br /><br /># Mysql<br />sudo -u gitlab cp config/database.yml.mysql config/database.yml<br /><br /># PostgreSQL<br />sudo -u gitlab cp config/database.yml.postgres config/database.yml<br /><br /># 修改 config/database.yml 确认输入了正确的用户名/密码</pre></blockquote><h4>安装数据库 gems</h4><blockquote><pre># mysql<br />sudo -u gitlab -H bundle install --without development test sqlite postgres  --deployment<br /><br /># 或者 postgres<br />sudo -u gitlab -H bundle install --without development test sqlite mysql --deployment<br /><br /># 或者 sqlite<br />sudo -u gitlab -H bundle install --without development test mysql postgres  --deployment</pre></blockquote><h4>初始化数据库</h4><blockquote><pre>sudo -u gitlab bundle exec rake gitlab:app:setup RAILS_ENV=production</pre></blockquote><h4>设置 GitLab hooks</h4><blockquote><pre>sudo cp ./lib/hooks/post-receive /home/git/.gitolite/hooks/common/post-receive<br />sudo chown git:git /home/git/.gitolite/hooks/common/post-receive</pre></blockquote><h4>确认应用程序状态：</h4><blockquote><pre>sudo -u gitlab bundle exec rake gitlab:app:status RAILS_ENV=production<br /><br /><br /># OUTPUT EXAMPLE<br />Starting diagnostic<br />config/database.yml............exists<br />config/gitlab.yml............exists<br />/home/git/repositories/............exists<br />/home/git/repositories/ is writable?............YES<br />remote: Counting objects: 603, done.<br />remote: Compressing objects: 100% (466/466), done.<br />remote: Total 603 (delta 174), reused 0 (delta 0)<br />Receiving objects: 100% (603/603), 53.29 KiB, done.<br />Resolving deltas: 100% (174/174), done.<br />Can clone gitolite-admin?............YES<br />UMASK for .gitolite.rc is 0007? ............YES<br />/home/git/share/gitolite/hooks/common/post-receive exists? ............YES</pre></blockquote><p>如果所有结果都是 YES，恭喜！你可以继续进行下一步了。</p><h1>5. 设置 web server</h1><p>应用可以用下一个命令行动：</p><blockquote><pre># 用于测试目的<br />sudo -u gitlab bundle exec rails s -e production<br /><br /># 用于守护进程<br />sudo -u gitlab bundle exec rails s -e production -d</pre></blockquote><p>默认登录用户名及密码：</p><blockquote><pre>admin@local.host<br />5iveL!fe</pre></blockquote><h1>6. 运行 Resque 进程(用于处理工作队列)</h1><blockquote><pre># 手动启动<br />sudo -u gitlab bundle exec rake environment resque:work QUEUE=* RAILS_ENV=production BACKGROUND=yes<br /><br /># GitLab 启动脚本<br />sudo -u gitlab ./resque.sh<br /># 如果你使用 root 运行此脚本，会导致 /home/gitlab/gitlab/tmp/pids/resque_worker.pid 文件的拥有者为 root<br /># 将导致 resque 在下一次系统初始化中无法启动</pre></blockquote><p>自定义 Resque 使用的 Redis 连接</p><p>如果你希望 Resque 连接到一个非标准端口号或另一台服务器上的 Redis，你可以在 config/resque.yml 文件修改连接信息：</p><blockquote><pre>production: redis.example.com:6379</pre></blockquote><p><strong>好了，我们已经拥有了一个工作正常的 GitLab 了，但请继续下去，有一些事情是必须完成的。</strong></p><h1>Nginx 与 Unicorn</h1><h2>1. Unicorn</h2><blockquote><pre>cd /home/gitlab/gitlab<br />sudo -u gitlab cp config/unicorn.rb.example config/unicorn.rb<br />sudo -u gitlab bundle exec unicorn_rails -c config/unicorn.rb -E production -D</pre></blockquote><h2>2. Nginx</h2><blockquote><pre># 初次安装 Nginx<br />sudo apt-get install nginx<br /><br /># 添加GitLab 到 nginx sites<br />sudo wget https://raw.github.com/gitlabhq/gitlab-recipes/master/nginx/gitlab -P /etc/nginx/sites-available/<br />sudo ln -s /etc/nginx/sites-available/gitlab /etc/nginx/sites-enabled/gitlab<br /><br /># 修改 **YOUR_SERVER_IP** 与 **YOUR_SERVER_FQDN**<br /># 为起初的 IP 地址与准备让 GitLab 服务的域名<br />sudo vim /etc/nginx/sites-enabled/gitlab<br /><br /># 重启 nginx:<br />sudo /etc/init.d/nginx restart</pre></blockquote><h2>3. Init 脚本</h2><p>在 /etc/init.d/gitlab 创建 init 脚本：</p><blockquote><pre>sudo wget https://raw.github.com/gitlabhq/gitlab-recipes/master/init.d/gitlab -P /etc/init.d/<br />sudo chmod +x /etc/init.d/gitlab</pre></blockquote><p>设置 GitLab 自动启动：</p><blockquote><pre>sudo update-rc.d gitlab defaults 21</pre></blockquote><p>现在你可以用这种方式启动/重启/停止 GitLab 服务：</p><blockquote><pre>sudo /etc/init.d/gitlab restart</pre></blockquote><p> </p><p>译者后注：其实通篇主要的全是各种命令，其实不看说明一条命令一条命令的复制粘贴也能安装完成，当然前提是你使用的是Ubuntu/Debian，回头有时间再写些其他系统的实际安装过程。</p></div>
 ]]></content>
@@ -34,9 +34,9 @@
   
   <entry>
     <title type="html"><![CDATA[NDK(jni) JAVA与C互传数组对象]]></title>
-    <link href="http://yinzhigang.github.com/2012/11/ndkjni-javac.html"/>
+    <link href="http://www.zhigang.net/2012/11/ndkjni-javac.html"/>
     <updated>2012-11-16T23:57:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2012/11/ndkjni-javac</id>
+    <id>http://www.zhigang.net/2012/11/ndkjni-javac</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>最近在搞NDK底层一些功能的开发，被一个问题折腾了3天，起初一直以为是C这边的位运算出了问题，查到最后才发现是数组传递出了问题，一开始我是这样写的：</p><blockquote><pre>void Java_com_xxx_test1(JNIEnv* env, jobject thiz, jint* javaArray, jint array_size) {<br />    other_function((int *)javaArray, (int)array_size);<br />}</pre></blockquote><p>真正正确的写法应该是这样：</p><blockquote><pre>void Java_com_xxx_test1(JNIEnv* env, jobject thiz, jintArray* javaArray) {<br />    // For C<br />    jint* pJint = (*env)-&gt;GetByteArrayElements(env, javaArray, 0);<br />    jsize array_size = (*env)-&gt;GetArrayLength(env, javaArray);<br />    // For C++<br />    // jint* pJint = env-&gt;GetByteArrayElements(javaArray, 0);<br />    // jsize array_size = env-&gt;GetArrayLength(javaArray);<br />    other_function((int *)pJint, array_size);<br />}</pre></blockquote><p>理论上讲这个问题应该是很容易发现的，但我为什么纠结了这么久呢，因为在之前我的另一段类似的代码中是工作正常的，像这样：</p><blockquote><pre>void Java_com_xxx_test2(JNIEnv* env, jobject thiz, jint* javaArray, jint array_size) {<br />    int a[10]; // 假设 array_size 一定会小于10<br />    int i;<br />    for (int = 0; i &lt; array_size; i++)<br />    {<br />        a[i] = (int)javaArray[i];<br />    }<br />}</pre></blockquote><p>所以我一直认为第一种写法是正确的，害死人啊。</p><p>C回传数组给JAVA是这样做的：</p><blockquote><pre>jintArray Java_com_xxx_test3(JNIEnv* env, jobject thiz) {<br />    int a = {1, 2, 3, 4};<br />    jbyteArray result;<br />    result = (*env)-&gt;NewByteArray(env, 4);<br />    (*env)-&gt;SetIntArrayRegion(env, result, 0, 4, a);<br />    // For C++<br />    // result = env-&gt;NewByteArray(4);<br />    // env-&gt;setIntArrayRegion(result, 0, 4, a);<br />    return result<br />}</pre></blockquote></div>
 ]]></content>
@@ -44,9 +44,9 @@
   
   <entry>
     <title type="html"><![CDATA[Gentoo 安装 charlock_holmes]]></title>
-    <link href="http://yinzhigang.github.com/2012/11/gentoo-charlockholmes.html"/>
+    <link href="http://www.zhigang.net/2012/11/gentoo-charlockholmes.html"/>
     <updated>2012-11-15T18:07:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2012/11/gentoo-charlockholmes</id>
+    <id>http://www.zhigang.net/2012/11/gentoo-charlockholmes</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>最近折腾gitlab + gitolite，安装到charlock_holmes一步出现一堆 undefined reference 错误，官方网站也有这么一个<a href="https://github.com/brianmario/charlock_holmes/issues/10" target="_blank">issue</a>。</p><p>解决办法：修改/usr/lib64/ruby/1.9.1/x86_64-linux/rbconfig.rb，删除CONFIG[&#8220;LDFLAGS&#8221;] 一行最后的“-Wl,&#8211;no-undefined”，具体原因未知。</p></div>
 ]]></content>
@@ -54,9 +54,9 @@
   
   <entry>
     <title type="html"><![CDATA[NDK note: the mangling of 'va_list' has changed in GCC 4.4]]></title>
-    <link href="http://yinzhigang.github.com/2012/11/ndk-note-mangling-of-valist-has-changed.html"/>
+    <link href="http://www.zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html"/>
     <updated>2012-11-13T18:05:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2012/11/ndk-note-mangling-of-valist-has-changed</id>
+    <id>http://www.zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
 ]]></content>
@@ -64,9 +64,9 @@
   
   <entry>
     <title type="html"><![CDATA[KVM使用原生CPU]]></title>
-    <link href="http://yinzhigang.github.com/2012/01/kvmcpu.html"/>
+    <link href="http://www.zhigang.net/2012/01/kvmcpu.html"/>
     <updated>2012-01-18T18:30:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2012/01/kvmcpu</id>
+    <id>http://www.zhigang.net/2012/01/kvmcpu</id>
     <content type="html"><![CDATA[<div class='post'>
 默认情况下 CentOS 6 安装虚拟机后的CPU是：QEMU Virtual CPU，一般使用是没有问题的，只是性能低下，PHP一个10万次循环的脚本居然需要执行50多秒，而母系统执行只需2秒多，差距有点儿太大。<br /><pre># virsh edit vm_name<br />&lt;domain type='kvm'&gt;<br />  ......<br />  &lt;qemu:commandline&gt;<br />    &lt;qemu:arg value='-cpu'/&gt;<br />    &lt;qemu:arg value='host'/&gt;<br />  &lt;/qemu:commandline&gt;<br />&lt;/domain&gt;<br /></pre>一般建议使用 virsh edit 编辑虚拟机配置文件，避免文件被破坏。</div>
 ]]></content>
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[libvirt与qemu 几个常用命令]]></title>
-    <link href="http://yinzhigang.github.com/2011/12/libvirtqemu.html"/>
+    <link href="http://www.zhigang.net/2011/12/libvirtqemu.html"/>
     <updated>2011-12-31T19:30:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2011/12/libvirtqemu</id>
+    <id>http://www.zhigang.net/2011/12/libvirtqemu</id>
     <content type="html"><![CDATA[<div class='post'>
 <h2>克隆一个虚拟机：</h2><pre>virt-clone -o formdomain -n todomain -f /path/filename.img</pre><h2>转换镜像格式：</h2><pre>qemu-img convert -O qcow2 filename.img filename.qcow2</pre><p>支持的格式：raw、qcow、qcow2、vmdk、vdi</p><h2>查看一个镜像的信息：</h2><pre>qcmu-img info filename.img</pre><h2>调整镜像大小</h2><pre>qemu-img resize filename.img +|-size</pre></div>
 ]]></content>
@@ -84,11 +84,52 @@
   
   <entry>
     <title type="html"><![CDATA[CentOS 6 安装配置KVM小记]]></title>
-    <link href="http://yinzhigang.github.com/2011/12/centos-6-kvm_10.html"/>
+    <link href="http://www.zhigang.net/2011/12/centos-6-kvm_10.html"/>
     <updated>2011-12-10T18:30:00+08:00</updated>
-    <id>http://yinzhigang.github.com/2011/12/centos-6-kvm_10</id>
+    <id>http://www.zhigang.net/2011/12/centos-6-kvm_10</id>
     <content type="html"><![CDATA[<div class='post'>
 作为一名半调子系统管理员，XEN那dom0,domU还要编译内核，这简直要了我的亲命，KVM作为一个CentOS 6开始唯一内置支持的虚拟化，安装配置简单，很适合我。<br /><h2>安装：</h2>KVM需要CPU支持vmx(Intel)或svm(AMD)。<br /><pre>$ cat /proc/cpuinfo | egrep 'vmx|svm'<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save</pre>安装KVM组件<br /><pre># yum groupinstall&nbsp;Virtualization<br /># yum groupinstall&nbsp;"Virtualization Platform"</pre>重启后检查是否安装成功，若使用Intel CPU会显示 kvm_intel。<br /><pre># lsmod | grep kvm<br />kvm_amd &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;37434 &nbsp;4&nbsp;<br />kvm &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 292815 &nbsp;1 kvm_amd</pre>OK，就这么简单，KVM安装完成。<br /><h2>周边工具：</h2>virt-manger与virt-viewer是基于X Window的图形化管理工具，优点呢就是操作简单、鼠标点点，坏处自然就是要装一堆图形组件，对于服务器来说这些东西有些太多余。<br />服务器上最好用的当然是命令行工具<br /><pre>yum install libvirt-client&nbsp;python-virtinst</pre>libvirt-client 提供了 virsh，主要功能为：启动、重启、停止等管理功能。<br />python-virtinst 提供了 virt-install 安装工具。<br /><h2>安装虚拟机</h2><pre>#&amp;nbsp;virt-install \<br />--name gentoo6 \<br />--ram 512 \<br />--vcpus=1 \<br />--disk path=/var/vps/gentoo6.img,size=4 \<br />--network network:default \<br />--os-variant=generic26 \<br />--accelerate \<br />--cdrom /var/vps/install-amd64-minimal-20111201.iso \<br />--vnc \<br />--vncport=5911 \<br />--vnclisten=0.0.0.0</pre>&#8211;name 指定虚拟机名称，virsh操作指定虚拟机时所需要的参数，不可以重复。<br />&#8211;ram 分配内存大小，安装完成后可以用 virsh 调整。<br />&#8211;vcpus 分配CPU核心数，最大与实体机CPU核心数相同，安装完成后也可以用 virsh 调整。<br />&#8211;disk 指定虚拟机镜像， size 指定分配大小单位为G。<br />&#8211;network 网络类型，此处用的是默认，一般用的应该是&nbsp;bridge 桥接，这个下次再说。<br />&#8211;os-variant 指定操作系统类型，此处使用的是标准Linux 2.6，其他的可以通过 man virt-install 详细查看。<br />&#8211;accelerate 呃，加速，具体什么原理还不太清楚。<br />&#8211;cdrom 指定安装镜像所在。<br />&#8211;vnc 启用VNC远程管理，一般安装系统都要启用。<br />&#8211;vncport 指定 VNC 监控端口，默认端口为 5900。<br />&#8211;vnclisten 指定 VNC 绑定IP，默认绑定127.0.0.1，这里将其改为 0.0.0.0 以便可以通过外部连接。<br />执行后如果没有安装 virt-viewer 或没有 X Window 系统可能会提示 virt-viewer 启动失败，不过没关系，使用 VNC Viewer 或者 MAC 下使用Chicken of the VNC连接到实体机，端口使用上面指定的就可以操作安装过程。另外需要注意的是，某些系统安装盘有等待输入时间，超过时间会自动使用硬盘启动，所以VNC连接一定要快，否则就需要 virsh&nbsp;destroy 然后 virsh start 再启动，因为系统尚未安装成功，此时的 virsh reboot 执行是无效的。<br /><h2>virsh 常用命令</h2>virsh list 列出当前虚拟机列表，貌似不包括未启动的。<br />virsh start domain-name 启动指定虚拟机。<br />virsh shutdown domain-name 停止指定虚拟机，执行此命令后 virsh list 里将不出现。<br />virsh reboot domain-name 重新启动指定虚拟机，这个命令貌似必须系统安装完成后才有效。<br />virsh autostart domain-name 指定虚拟机开机自动启动，需要 libvirtd 服务默认启动。<br />还有更多，一时也没全搞明白，全写出来估计可以写本手册了。<br /><h2>其他</h2>虚拟机配置存储在 /etc/libvirt/qemu 目录，配置文件为XML格式。<br />自动启动的虚拟机在 /etc/libvirt/qemu/autostart 目录。</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[simplejson处理不严谨JSON一例]]></title>
+    <link href="http://www.zhigang.net/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li.html"/>
+    <updated>2010-12-20T03:08:22+08:00</updated>
+    <id>http://www.zhigang.net/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li</id>
+    <content type="html"><![CDATA[<p>一个标准、严谨的JSON应该如下：</p>
+
+<pre><code>{"title": "\u6587\u7ae0\u6807\u9898\n\u6362\u884c"}
+</code></pre>
+
+<p>但是在某些情况下，特别是跨语言情况下，JSON可能是这个样子：</p>
+
+<pre><code>{"title": "文章标题
+换行"}
+</code></pre>
+
+<p>这种情况下直接使用 simplejson.loads(json) 有可能报如下错误：</p>
+
+<pre><code>Traceback (most recent call last):
+  File "testjson.py", line 24, in &lt;module&gt;
+    print simplejson.loads(json)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/
+site-packages/PIL/__init__.py", line 384, in loads
+
+  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 402, 
+in decode
+  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 418, 
+in raw_decode
+simplejson.decoder.JSONDecodeError: Invalid control character at: line 1 
+column 15 (char 15)
+</code></pre>
+
+<p>simplejson.loads() 有一个手册上没有提及的参数“strict”，这其实是 JSONDecoder 的一个构造参数，即不严格检查JSON语法。</p>
+
+<p>因此，兼容非标准格式的方法即：</p>
+
+<pre><code>simplejson.loads(json, strict=False)
+</code></pre>
 ]]></content>
   </entry>
   

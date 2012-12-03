@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | 殷志刚]]></title>
+  <link href="http://www.zhigang.net/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://www.zhigang.net/"/>
+  <updated>2012-12-03T22:33:12+08:00</updated>
+  <id>http://www.zhigang.net/</id>
+  <author>
+    <name><![CDATA[殷志刚]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[simplejson处理不严谨JSON一例]]></title>
+    <link href="http://www.zhigang.net/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li.html"/>
+    <updated>2010-12-20T03:08:22+08:00</updated>
+    <id>http://www.zhigang.net/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li</id>
+    <content type="html"><![CDATA[<p>一个标准、严谨的JSON应该如下：</p>
+
+<pre><code>{"title": "\u6587\u7ae0\u6807\u9898\n\u6362\u884c"}
+</code></pre>
+
+<p>但是在某些情况下，特别是跨语言情况下，JSON可能是这个样子：</p>
+
+<pre><code>{"title": "文章标题
+换行"}
+</code></pre>
+
+<p>这种情况下直接使用 simplejson.loads(json) 有可能报如下错误：</p>
+
+<pre><code>Traceback (most recent call last):
+  File "testjson.py", line 24, in &lt;module&gt;
+    print simplejson.loads(json)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/
+site-packages/PIL/__init__.py", line 384, in loads
+
+  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 402, 
+in decode
+  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 418, 
+in raw_decode
+simplejson.decoder.JSONDecodeError: Invalid control character at: line 1 
+column 15 (char 15)
+</code></pre>
+
+<p>simplejson.loads() 有一个手册上没有提及的参数“strict”，这其实是 JSONDecoder 的一个构造参数，即不严格检查JSON语法。</p>
+
+<p>因此，兼容非标准格式的方法即：</p>
+
+<pre><code>simplejson.loads(json, strict=False)
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
