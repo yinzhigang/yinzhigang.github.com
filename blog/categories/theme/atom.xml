@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: theme | 殷志刚]]></title>
+  <link href="http://www.zhigang.net/blog/categories/theme/atom.xml" rel="self"/>
+  <link href="http://www.zhigang.net/"/>
+  <updated>2012-12-10T19:07:40+08:00</updated>
+  <id>http://www.zhigang.net/</id>
+  <author>
+    <name><![CDATA[殷志刚]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[下载themeforest.net的主题]]></title>
+    <link href="http://www.zhigang.net/2012/12/down-themeforest-dot-net-theme.html"/>
+    <updated>2012-12-10T18:35:00+08:00</updated>
+    <id>http://www.zhigang.net/2012/12/down-themeforest-dot-net-theme</id>
+    <content type="html"><![CDATA[<p>themeforest.net有很多漂亮的主题，但都是收费的而且还不便宜。但幸好很多主题都提供预览功能，这时我们就可以使用wget神器将HTML、CSS、JS、图片等下载下来，当然Wordpress之类的主题就需要自己写程序来实现功能了。</p>
+
+<p>比如<a href="http://themeforest.net/item/ninja-admin-/21190">这个</a>简洁的后台管理模板，我们点 Live Prefiew 找到真正的预览地址：http://benblogged.com/dev/ninja_admin/</p>
+
+<pre><code>wget -mk http://benblogged.com/dev/ninja_admin/
+</code></pre>
+
+<p>稍等一会儿，包括CSS图片在内的文件就会被下载到benblogged.com/dev/ninja_admin/，这个页面比较简单，只有一个HTML，其他复杂些也一样。</p>
+
+<p>如果对方服务器有限制，如限制抓取速度，那么：</p>
+
+<pre><code>wget -mk -w 20 http://benblogged.com/dev/ninja_admin/
+</code></pre>
+
+<p>-w 20 代表每隔20秒下载一个文件。</p>
+
+<p>还有服务器限制User-Agent，这也好办：</p>
+
+<pre><code>wget -mk -U 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11' http://benblogged.com/dev/ninja_admin/
+</code></pre>
+
+<p>这就模拟成了普通浏览器，怎么样，酷吧。</p>
+]]></content>
+  </entry>
+  
+</feed>

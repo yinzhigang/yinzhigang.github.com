@@ -7,7 +7,7 @@
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content=" 第一次使用 Octopress，看起来是我喜欢的风格，希望可以让我继续写下去。 Dec 3rd, 2012 Octopress ">
+	<meta name="description" content="themeforest.net有很多漂亮的主题，但都是收费的而且还不便宜。但幸好很多主题都提供预览功能，这时我们就可以使用wget神器将HTML、CSS、JS、图片等下载下来，当然Wordpress之类的主题就需要自己写程序来实现功能了。 比如这个简洁的后台管理模板，我们点 Live &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,67 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2012/12/down-themeforest-dot-net-theme.html">
+		
+			下载themeforest.net的主题</a>
+	</h2>
+	<div class="entry-content">
+		<p>themeforest.net有很多漂亮的主题，但都是收费的而且还不便宜。但幸好很多主题都提供预览功能，这时我们就可以使用wget神器将HTML、CSS、JS、图片等下载下来，当然Wordpress之类的主题就需要自己写程序来实现功能了。</p>
+
+<p>比如<a href="http://themeforest.net/item/ninja-admin-/21190">这个</a>简洁的后台管理模板，我们点 Live Prefiew 找到真正的预览地址：http://benblogged.com/dev/ninja_admin/</p>
+
+<pre><code>wget -mk http://benblogged.com/dev/ninja_admin/
+</code></pre>
+
+<p>稍等一会儿，包括CSS图片在内的文件就会被下载到benblogged.com/dev/ninja_admin/，这个页面比较简单，只有一个HTML，其他复杂些也一样。</p>
+
+<p>如果对方服务器有限制，如限制抓取速度，那么：</p>
+
+<pre><code>wget -mk -w 20 http://benblogged.com/dev/ninja_admin/
+</code></pre>
+
+<p>-w 20 代表每隔20秒下载一个文件。</p>
+
+<p>还有服务器限制User-Agent，这也好办：</p>
+
+<pre><code>wget -mk -U 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11' http://benblogged.com/dev/ninja_admin/
+</code></pre>
+
+<p>这就模拟成了普通浏览器，怎么样，酷吧。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-10T18:35:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/theme/'>theme</a>, <a class='category' href='/blog/categories/wget/'>wget</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -475,60 +536,10 @@ column 15 (char 15)
 	
 </div></article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2010/04/svn-cant-move-dot-svn-slash-tmp-slash-entries-to-dot-svn-slash-entries-operation-not-permitted.html">
-		
-			Svn: Can&#8217;t Move &#8216;.svn/tmp/entries&#8217; to &#8216;.svn/entries&#8217;: Operation Not Permitted</a>
-	</h2>
-	<div class="entry-content">
-		<p>SVN 总是在 Mac OS 下出现这句错误提示，这个问题一般在与 Windows 共用一个目录，并在 Windows 下进行过 svn up 操作后，<a href="http://www.devcha.com/2008/03/mac-os-cant-move-svntmpentries-to.html">老外</a>对此给出了解决方法，但是最近这个站点在国内经常打不开，在此记一笔为自己备记。</p>
-
-<p>进入项目目录执行：</p>
-
-<pre><code>chflags -R nouchg .
-</code></pre>
-
-<p>老外给的方法是：</p>
-
-<pre><code>chflags -R nouchg *
-</code></pre>
-
-<p>但是有时会依然会无法解决问题，两种方法都试试吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-04-09T18:27:41+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2010</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac-os/'>Mac OS</a>, <a class='category' href='/blog/categories/svn/'>SVN</a>
-
-
-</div>
-	
-</div></article>
-
 <nav id="pagenavi">
     
+    
+        <a href="/blog/page/2/" class="next">Next</a>
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav></div>
