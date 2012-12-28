@@ -7,7 +7,7 @@
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content="themeforest.net有很多漂亮的主题，但都是收费的而且还不便宜。但幸好很多主题都提供预览功能，这时我们就可以使用wget神器将HTML、CSS、JS、图片等下载下来，当然Wordpress之类的主题就需要自己写程序来实现功能了。 比如这个简洁的后台管理模板，我们点 Live &hellip;">
+	<meta name="description" content="经过这么多年，IDE与编辑器用了不少，从开始的EditPlus到ZendStudio再到Eclipse、NetBeans、TextMate、Sublime Text等等。 几年前也曾经尝试过VIM、Emacs，但当时一是年少无知，二是插件没有如今这么丰富与强大，特别是在VIM支持Python、 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +76,70 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html">
+		
+			开始使用vim作主要开发工具</a>
+	</h2>
+	<div class="entry-content">
+		<p>经过这么多年，IDE与编辑器用了不少，从开始的EditPlus到ZendStudio再到Eclipse、NetBeans、TextMate、Sublime Text等等。</p>
+
+<p>几年前也曾经尝试过VIM、Emacs，但当时一是年少无知，二是插件没有如今这么丰富与强大，特别是在VIM支持Python、Ruby等脚本语言开发插件后，插件功能日益强大，甚至可以达到IDE标准，还有UltiSnips实现了类似TextMate的tab功能。加上灵活的自定义功能，让经过几年漂泊的我发现这几十年前诞生的编辑器竟如此强大。所以就这样了，选定离手。</p>
+
+<p>下面是一些目前我使用的插件：</p>
+
+<ul>
+<li>vundle (最好用的VIM插件管理工具，当年插件安装复杂也是我无法继续的原因之一)</li>
+<li>UltiSnips (仿TextMate的TAB补全，支持Python写snips)</li>
+<li>NERDTree (项目目录树)</li>
+<li>NERTCommenter (代码注释，支持多种语言)</li>
+<li>TagBar (显示类方法、函数列表、属性等导航)</li>
+<li>neocomplcache (代码提示)</li>
+<li>vim-octopress (本博客代码加亮)</li>
+<li>phpcomplete.vim (PHP代码自动完成)</li>
+<li>javacomplete (JAVA代码自动完成)</li>
+<li>zencoding.vim (HTML快速书写)</li>
+<li>numbers.vim (在命令模式显示与当前行间隔的行数，用于快速定位)</li>
+<li>powerline (漂亮的状态栏)</li>
+<li>matchit (快速找到标签的开始或结束位置)</li>
+<li>AutoClose (自动关闭括号、引号)</li>
+</ul>
+
+
+<p>我的.vimrc配置已经发布到GitHub: https://github.com/yinzhigang/dotvim</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-28T22:34:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vim/'>vim</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
@@ -458,78 +522,6 @@
 
 
 	<a class='category' href='/blog/categories/centos/'>CentOS</a>, <a class='category' href='/blog/categories/kvm/'>KVM</a>, <a class='category' href='/blog/categories/虚拟化/'>虚拟化</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li.html">
-		
-			simplejson处理不严谨JSON一例</a>
-	</h2>
-	<div class="entry-content">
-		<p>一个标准、严谨的JSON应该如下：</p>
-
-<pre><code>{"title": "\u6587\u7ae0\u6807\u9898\n\u6362\u884c"}
-</code></pre>
-
-<p>但是在某些情况下，特别是跨语言情况下，JSON可能是这个样子：</p>
-
-<pre><code>{"title": "文章标题
-换行"}
-</code></pre>
-
-<p>这种情况下直接使用 simplejson.loads(json) 有可能报如下错误：</p>
-
-<pre><code>Traceback (most recent call last):
-  File "testjson.py", line 24, in &lt;module&gt;
-    print simplejson.loads(json)
-  File "/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/
-site-packages/PIL/__init__.py", line 384, in loads
-
-  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 402, 
-in decode
-  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 418, 
-in raw_decode
-simplejson.decoder.JSONDecodeError: Invalid control character at: line 1 
-column 15 (char 15)
-</code></pre>
-
-<p>simplejson.loads() 有一个手册上没有提及的参数“strict”，这其实是 JSONDecoder 的一个构造参数，即不严格检查JSON语法。</p>
-
-<p>因此，兼容非标准格式的方法即：</p>
-
-<pre><code>simplejson.loads(json, strict=False)
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-20T03:08:22+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2010</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/json/'>JSON</a>, <a class='category' href='/blog/categories/python/'>Python</a>
 
 
 </div>

@@ -7,7 +7,8 @@
 	<meta name="author" content="殷志刚">
 
 	
-	<meta name="description" content="SVN 总是在 Mac OS 下出现这句错误提示，这个问题一般在与 Windows 共用一个目录，并在 Windows 下进行过 svn up 操作后，老外对此给出了解决方法，但是最近这个站点在国内经常打不开，在此记一笔为自己备记。 进入项目目录执行： chflags -R nouchg . &hellip;">
+	<meta name="description" content="一个标准、严谨的JSON应该如下： {"title": "\u6587\u7ae0\u6807\u9898\n\u6362\u884c"} 但是在某些情况下，特别是跨语言情况下，JSON可能是这个样子： {"title": "文章标题
+换行"} 这种情况下直接使用 simplejson. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -76,6 +77,78 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li.html">
+		
+			simplejson处理不严谨JSON一例</a>
+	</h2>
+	<div class="entry-content">
+		<p>一个标准、严谨的JSON应该如下：</p>
+
+<pre><code>{"title": "\u6587\u7ae0\u6807\u9898\n\u6362\u884c"}
+</code></pre>
+
+<p>但是在某些情况下，特别是跨语言情况下，JSON可能是这个样子：</p>
+
+<pre><code>{"title": "文章标题
+换行"}
+</code></pre>
+
+<p>这种情况下直接使用 simplejson.loads(json) 有可能报如下错误：</p>
+
+<pre><code>Traceback (most recent call last):
+  File "testjson.py", line 24, in &lt;module&gt;
+    print simplejson.loads(json)
+  File "/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/
+site-packages/PIL/__init__.py", line 384, in loads
+
+  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 402, 
+in decode
+  File "build/bdist.macosx-10.5-i386/egg/simplejson/decoder.py", line 418, 
+in raw_decode
+simplejson.decoder.JSONDecodeError: Invalid control character at: line 1 
+column 15 (char 15)
+</code></pre>
+
+<p>simplejson.loads() 有一个手册上没有提及的参数“strict”，这其实是 JSONDecoder 的一个构造参数，即不严格检查JSON语法。</p>
+
+<p>因此，兼容非标准格式的方法即：</p>
+
+<pre><code>simplejson.loads(json, strict=False)
+</code></pre>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-20T03:08:22+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2010</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/json/'>JSON</a>, <a class='category' href='/blog/categories/python/'>Python</a>
+
+
+</div>
+	
+</div></article>
 
 
     <article class="post">
