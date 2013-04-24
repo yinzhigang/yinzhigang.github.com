@@ -4,7 +4,7 @@
   <title><![CDATA[殷志刚]]></title>
   <link href="http://www.zhigang.net/atom.xml" rel="self"/>
   <link href="http://www.zhigang.net/"/>
-  <updated>2012-12-29T00:47:29+08:00</updated>
+  <updated>2013-04-24T21:54:53+08:00</updated>
   <id>http://www.zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[终于上了一次电视]]></title>
+    <link href="http://www.zhigang.net/2013/04/liveshows-in-mingyun-60s.html"/>
+    <updated>2013-04-24T19:37:00+08:00</updated>
+    <id>http://www.zhigang.net/2013/04/liveshows-in-mingyun-60s</id>
+    <content type="html"><![CDATA[<p>年前受《命运60秒》节目组的邀请，去北京录了一期节目，河南卫视每周二21:20播，我录那期在这个月16号播了，悲剧的是我没看到直播&#8230;</p>
+
+<iframe height=498 width=510 frameborder=0 src="http://player.youku.com/embed/XNTQzOTI2MDQ0" allowfullscreen></iframe>
+
+
+<p>好在现在都有点播可看，我在大约34分钟左右，刚上台有些紧张，好在上台后问答环节总算没丢人，欲知最后我成功没有？自己看吧，呵呵。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[开始使用vim作主要开发工具]]></title>
