@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | 殷志刚]]></title>
   <link href="http://www.zhigang.net/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://www.zhigang.net/"/>
-  <updated>2013-08-11T19:49:41+08:00</updated>
+  <updated>2013-08-11T20:25:47+08:00</updated>
   <id>http://www.zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
@@ -103,6 +103,8 @@ LOCAL_STATIC_LIBRARIES := libcurl
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
 LOCAL_LDLIBS    += -lz
 </code></pre>
+
+<p>参考：<a href="http://stackoverflow.com/questions/11330180/porting-libcurl-on-android-with-ssl-support">http://stackoverflow.com/questions/11330180/porting-libcurl-on-android-with-ssl-support</a></p>
 ]]></content>
   </entry>
   
