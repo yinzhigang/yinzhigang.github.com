@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android | 殷志刚]]></title>
-  <link href="http://www.zhigang.net/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://www.zhigang.net/"/>
-  <updated>2013-04-24T21:54:53+08:00</updated>
-  <id>http://www.zhigang.net/</id>
+  <link href="http://yinzhigang.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://yinzhigang.github.io/"/>
+  <updated>2013-08-11T19:41:42+08:00</updated>
+  <id>http://yinzhigang.github.io/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
     
@@ -14,10 +14,103 @@
 
   
   <entry>
+    <title type="html"><![CDATA[移植libcurl到Android NDK]]></title>
+    <link href="http://yinzhigang.github.io/2013/08/yi-zhi-libcurldao-android-ndk.html"/>
+    <updated>2013-08-11T17:50:00+08:00</updated>
+    <id>http://yinzhigang.github.io/2013/08/yi-zhi-libcurldao-android-ndk</id>
+    <content type="html"><![CDATA[<p>测试通过环境：</p>
+
+<pre><code>操作系统：Mac OS
+NDK：NDK r8e
+libcurl：7.31.0
+</code></pre>
+
+<p>下载NDK环境: <a href="http://developer.android.com/tools/sdk/ndk/index.html%EF%BC%8C%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E4%B8%8D%E5%BA%9F%E8%AF%9D%E4%BA%86%E3%80%82">http://developer.android.com/tools/sdk/ndk/index.html%EF%BC%8C%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E4%B8%8D%E5%BA%9F%E8%AF%9D%E4%BA%86%E3%80%82</a></p>
+
+<p>在NDK安装目录执行</p>
+
+<pre><code>./build/tools/make-standalone-toolchain.sh
+</code></pre>
+
+<p>导出编译工具，一般生成压缩如 /tmp/ndk-zhigang/arm-linux-androideabi-4.6.tar.bz2。</p>
+
+<p>解压：</p>
+
+<pre><code>cd /opt/
+sudo tar xf /tmp/ndk-zhigang/arm-linux-androideabi-4.6.tar.bz2
+</code></pre>
+
+<p>下载curl源代码：<a href="http://curl.haxx.se/download.html">http://curl.haxx.se/download.html</a></p>
+
+<p>设置编译环境：</p>
+
+<pre><code>export LDFLAGS="\
+-L/usr/local/Cellar/android-ndk/r8e/platforms/android-14/arch-arm/usr/lib"
+
+export CPPFLAGS="\
+-I/usr/local/Cellar/android-ndk/r8e/platforms/android-14/arch-arm/usr/include"
+</code></pre>
+
+<p>将以上路径修改为自己的NDK安装目录。</p>
+
+<p>进入curl目录：</p>
+
+<pre><code>./configure --host=arm-linux-androideabi \
+--disable-ftp \
+--disable-gopher \
+--disable-file \
+--disable-imap \
+--disable-ldap \
+--disable-ldaps \
+--disable-pop3 \
+--disable-proxy \
+--disable-rtsp \
+--disable-smtp \
+--disable-telnet \
+--disable-tftp \
+--without-gnutls \
+--without-libidn \
+--without-librtmp \
+--without-ssl \
+--disable-dict
+
+mark
+</code></pre>
+
+<p>生成的静态库文件位于：lib/.libs/libcurl.a 动态库：libcurl.so.5.3.0</p>
+
+<p>一般我们使用静态库文件。</p>
+
+<p>复制 libcurl.a 到项目 jni/ 目录，修改 Android.mk 文件：</p>
+
+<pre><code># A simple test for the minimal standard C++ library
+</code></pre>
+
+<p>#</p>
+
+<pre><code>LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := curl
+LOCAL_SRC_FILES := libcurl.a
+include $(PREBUILT_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_CFLAGS = -Wno-psabi
+LOCAL_MODULE := curltest
+LOCAL_SRC_FILES := curltest.c
+LOCAL_STATIC_LIBRARIES := libcurl
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
+LOCAL_LDLIBS    += -lz
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[NDK(jni) JAVA与C互传数组对象]]></title>
-    <link href="http://www.zhigang.net/2012/11/ndkjni-javac.html"/>
+    <link href="http://yinzhigang.github.io/2012/11/ndkjni-javac.html"/>
     <updated>2012-11-16T23:57:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/11/ndkjni-javac</id>
+    <id>http://yinzhigang.github.io/2012/11/ndkjni-javac</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>最近在搞NDK底层一些功能的开发，被一个问题折腾了3天，起初一直以为是C这边的位运算出了问题，查到最后才发现是数组传递出了问题，一开始我是这样写的：</p><blockquote><pre>void Java_com_xxx_test1(JNIEnv* env, jobject thiz, jint* javaArray, jint array_size) {<br />    other_function((int *)javaArray, (int)array_size);<br />}</pre></blockquote><p>真正正确的写法应该是这样：</p><blockquote><pre>void Java_com_xxx_test1(JNIEnv* env, jobject thiz, jintArray* javaArray) {<br />    // For C<br />    jint* pJint = (*env)-&gt;GetByteArrayElements(env, javaArray, 0);<br />    jsize array_size = (*env)-&gt;GetArrayLength(env, javaArray);<br />    // For C++<br />    // jint* pJint = env-&gt;GetByteArrayElements(javaArray, 0);<br />    // jsize array_size = env-&gt;GetArrayLength(javaArray);<br />    other_function((int *)pJint, array_size);<br />}</pre></blockquote><p>理论上讲这个问题应该是很容易发现的，但我为什么纠结了这么久呢，因为在之前我的另一段类似的代码中是工作正常的，像这样：</p><blockquote><pre>void Java_com_xxx_test2(JNIEnv* env, jobject thiz, jint* javaArray, jint array_size) {<br />    int a[10]; // 假设 array_size 一定会小于10<br />    int i;<br />    for (int = 0; i &lt; array_size; i++)<br />    {<br />        a[i] = (int)javaArray[i];<br />    }<br />}</pre></blockquote><p>所以我一直认为第一种写法是正确的，害死人啊。</p><p>C回传数组给JAVA是这样做的：</p><blockquote><pre>jintArray Java_com_xxx_test3(JNIEnv* env, jobject thiz) {<br />    int a = {1, 2, 3, 4};<br />    jbyteArray result;<br />    result = (*env)-&gt;NewByteArray(env, 4);<br />    (*env)-&gt;SetIntArrayRegion(env, result, 0, 4, a);<br />    // For C++<br />    // result = env-&gt;NewByteArray(4);<br />    // env-&gt;setIntArrayRegion(result, 0, 4, a);<br />    return result<br />}</pre></blockquote></div>
 
@@ -26,9 +119,9 @@
   
   <entry>
     <title type="html"><![CDATA[NDK note: the mangling of 'va_list' has changed in GCC 4.4]]></title>
-    <link href="http://www.zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html"/>
+    <link href="http://yinzhigang.github.io/2012/11/ndk-note-mangling-of-valist-has-changed.html"/>
     <updated>2012-11-13T18:05:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed</id>
+    <id>http://yinzhigang.github.io/2012/11/ndk-note-mangling-of-valist-has-changed</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
 

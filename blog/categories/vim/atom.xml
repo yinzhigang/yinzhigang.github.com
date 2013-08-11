@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: vim | 殷志刚]]></title>
-  <link href="http://www.zhigang.net/blog/categories/vim/atom.xml" rel="self"/>
-  <link href="http://www.zhigang.net/"/>
-  <updated>2013-04-24T21:54:53+08:00</updated>
-  <id>http://www.zhigang.net/</id>
+  <link href="http://yinzhigang.github.io/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://yinzhigang.github.io/"/>
+  <updated>2013-08-11T19:41:42+08:00</updated>
+  <id>http://yinzhigang.github.io/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[开始使用vim作主要开发工具]]></title>
-    <link href="http://www.zhigang.net/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html"/>
+    <link href="http://yinzhigang.github.io/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html"/>
     <updated>2012-12-28T22:34:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju</id>
+    <id>http://yinzhigang.github.io/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju</id>
     <content type="html"><![CDATA[<p>经过这么多年，IDE与编辑器用了不少，从开始的EditPlus到ZendStudio再到Eclipse、NetBeans、TextMate、Sublime Text等等。</p>
 
 <p>几年前也曾经尝试过VIM、Emacs，但当时一是年少无知，二是插件没有如今这么丰富与强大，特别是在VIM支持Python、Ruby等脚本语言开发插件后，插件功能日益强大，甚至可以达到IDE标准，还有UltiSnips实现了类似TextMate的tab功能。加上灵活的自定义功能，让经过几年漂泊的我发现这几十年前诞生的编辑器竟如此强大。所以就这样了，选定离手。</p>
@@ -42,7 +42,7 @@
 </ul>
 
 
-<p>我的.vimrc配置已经发布到GitHub: https://github.com/yinzhigang/dotvim</p>
+<p>我的.vimrc配置已经发布到GitHub: <a href="https://github.com/yinzhigang/dotvim">https://github.com/yinzhigang/dotvim</a></p>
 ]]></content>
   </entry>
   

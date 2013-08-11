@@ -1,83 +1,124 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>开始使用vim作主要开发工具 - 殷志刚</title>
-	<meta name="author" content="殷志刚">
+  <meta charset="utf-8">
+  <title>开始使用vim作主要开发工具 - 殷志刚</title>
+  <meta name="author" content="殷志刚">
 
-	
-	<meta name="description" content="经过这么多年，IDE与编辑器用了不少，从开始的EditPlus到ZendStudio再到Eclipse、NetBeans、TextMate、Sublime Text等等。 几年前也曾经尝试过VIM、Emacs，但当时一是年少无知，二是插件没有如今这么丰富与强大，特别是在VIM支持Python、 &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="技术备忘，随想随笔">
+  
 
-	<link href="/atom.xml" rel="alternate" title="殷志刚" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yinzhigang.github.io/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .sharing, .meta, .pager {
+      margin: 20px 0px 20px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="殷志刚" type="application/atom+xml">
+  
+  
+
 </head>
 
-<body>
-	<header id="header" class="inner"><h1><a href="/">殷志刚</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.zhigang.net">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		<a class="google" href="https://plus.google.com/yinzhigang?rel=author" title="Google+">Google+</a>
-		
-		
-		
-		<a class="github" href="https://github.com/yinzhigang" title="GitHub">GitHub</a>
-		
-    
-		
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.zhigang.net">
-	</form>
-</nav>
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
 
-</header>
-	
-		
-	
-	<div id="content" class="inner"><article class="post">
-	<h2 class="title">开始使用vim作主要开发工具</h2>
-	<div class="entry-content"><p>经过这么多年，IDE与编辑器用了不少，从开始的EditPlus到ZendStudio再到Eclipse、NetBeans、TextMate、Sublime Text等等。</p>
+      <a class="brand" href="/">殷志刚</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:yinzhigang.github.io" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span9" role="article">
+
+  
+  <header class="page-header">
+    
+      <h1 class="entry-title">开始使用vim作主要开发工具</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-28T22:34:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>经过这么多年，IDE与编辑器用了不少，从开始的EditPlus到ZendStudio再到Eclipse、NetBeans、TextMate、Sublime Text等等。</p>
 
 <p>几年前也曾经尝试过VIM、Emacs，但当时一是年少无知，二是插件没有如今这么丰富与强大，特别是在VIM支持Python、Ruby等脚本语言开发插件后，插件功能日益强大，甚至可以达到IDE标准，还有UltiSnips实现了类似TextMate的tab功能。加上灵活的自定义功能，让经过几年漂泊的我发现这几十年前诞生的编辑器竟如此强大。所以就这样了，选定离手。</p>
 
@@ -101,12 +142,18 @@
 </ul>
 
 
-<p>我的.vimrc配置已经发布到GitHub: https://github.com/yinzhigang/dotvim</p>
+<p>我的.vimrc配置已经发布到GitHub: <a href="https://github.com/yinzhigang/dotvim">https://github.com/yinzhigang/dotvim</a></p>
 </div>
 
 
-<div class="meta">
-	<div class="date">
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">殷志刚</span></span>
+
+      
 
 
 
@@ -118,57 +165,137 @@
   
 
 
-<time datetime="2012-12-28T22:34:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time></div>
-	<div class="tags">
+<time datetime="2012-12-28T22:34:00+08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/vim/'>vim</a>
+  
+</span>
 
 
-	<a class='category' href='/blog/categories/vim/'>vim</a>
-
-
-</div>
-	
-</div></article>
-
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	<a class="addthis_button_tweet"></a>
-	
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
 </div>
 
-
-<!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"zhigang"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END -->
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2012/12/down-themeforest-dot-net-theme.html" title="Previous Post:
+        下载themeforest.net的主题">&laquo; 下载themeforest.net的主题</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/2013/04/liveshows-in-mingyun-60s.html"
+        title="Next Post: 终于上了一次电视">终于上了一次电视
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
 
-    殷志刚
+<aside class="sidebar-nav span3">
+  
+    <section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/08/yi-zhi-libcurldao-android-ndk.html">移植libcurl到Android NDK</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/04/liveshows-in-mingyun-60s.html">终于上了一次电视</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html">开始使用vim作主要开发工具</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/12/down-themeforest-dot-net-theme.html">下载themeforest.net的主题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/12/octopress-ce-shi.html">Octopress 测试</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/yinzhigang">@yinzhigang</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        github.showRepos({
+            user: 'yinzhigang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/asides/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - 殷志刚 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
 
 </footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
+  
+
 <script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
+      var disqus_shortname = 'yinzhigang';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yinzhigang.github.io/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html';
+        var disqus_url = 'http://yinzhigang.github.io/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
 
 
 

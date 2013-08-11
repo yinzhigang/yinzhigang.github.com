@@ -1,101 +1,107 @@
 
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-	<meta charset="utf-8">
-	<title>殷志刚</title>
-	<meta name="author" content="殷志刚">
+  <meta charset="utf-8">
+  <title>殷志刚</title>
+  <meta name="author" content="殷志刚">
 
-	
-	<meta name="description" content="作为一名半调子系统管理员，XEN那dom0,domU还要编译内核，这简直要了我的亲命，KVM作为一个CentOS 6开始唯一内置支持的虚拟化，安装配置简单，很适合我。安装：KVM需要CPU支持vmx(Intel)或svm(AMD)。$ cat /proc/cpuinfo | egrep 'vmx &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="description" content="技术备忘，随想随笔">
+  
 
-	<link href="/atom.xml" rel="alternate" title="殷志刚" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yinzhigang.github.io/blog/page/2/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/syntax/syntax.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <style type="text/css">
+    body {
+      padding-bottom: 40px;
+    }
+    h1 {
+      margin-bottom: 15px;
+    }
+    img {
+      max-width: 100%;
+    }
+    .sharing, .meta, .pager {
+      margin: 20px 0px 20px 0px;
+    }
+    .page-footer p {
+      text-align: center;
+    }
+  </style>
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="殷志刚" type="application/atom+xml">
+  
+  
+
 </head>
 
-<body>
-	<header id="header" class="inner"><h1><a href="/">殷志刚</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">殷志刚</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
 </ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
-</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:yinzhigang.github.io" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
 </div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:www.zhigang.net">
-			</form>
-		</div>
-	</div>
 </nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		<a class="google" href="https://plus.google.com/yinzhigang?rel=author" title="Google+">Google+</a>
-		
-		
-		
-		<a class="github" href="https://github.com/yinzhigang" title="GitHub">GitHub</a>
-		
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+  
+  
+  
+    <article>
+      
+  <header class="page-header">
     
-		
-		
-		
-		
-		
-		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
-		
-	</div>
-	<form class="search" action="http://google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:www.zhigang.net">
-	</form>
-</nav>
-
-</header>
-	
-		
-	
-	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2011/12/centos-6-kvm_10.html">
-		
-			CentOS 6 安装配置KVM小记</a>
-	</h2>
-	<div class="entry-content">
-		<div class='post'>
-作为一名半调子系统管理员，XEN那dom0,domU还要编译内核，这简直要了我的亲命，KVM作为一个CentOS 6开始唯一内置支持的虚拟化，安装配置简单，很适合我。<br /><h2>安装：</h2>KVM需要CPU支持vmx(Intel)或svm(AMD)。<br /><pre>$ cat /proc/cpuinfo | egrep 'vmx|svm'<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save</pre>安装KVM组件<br /><pre># yum groupinstall&nbsp;Virtualization<br /># yum groupinstall&nbsp;"Virtualization Platform"</pre>重启后检查是否安装成功，若使用Intel CPU会显示 kvm_intel。<br /><pre># lsmod | grep kvm<br />kvm_amd &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;37434 &nbsp;4&nbsp;<br />kvm &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 292815 &nbsp;1 kvm_amd</pre>OK，就这么简单，KVM安装完成。<br /><h2>周边工具：</h2>virt-manger与virt-viewer是基于X Window的图形化管理工具，优点呢就是操作简单、鼠标点点，坏处自然就是要装一堆图形组件，对于服务器来说这些东西有些太多余。<br />服务器上最好用的当然是命令行工具<br /><pre>yum install libvirt-client&nbsp;python-virtinst</pre>libvirt-client 提供了 virsh，主要功能为：启动、重启、停止等管理功能。<br />python-virtinst 提供了 virt-install 安装工具。<br /><h2>安装虚拟机</h2><pre>#&amp;nbsp;virt-install \<br />--name gentoo6 \<br />--ram 512 \<br />--vcpus=1 \<br />--disk path=/var/vps/gentoo6.img,size=4 \<br />--network network:default \<br />--os-variant=generic26 \<br />--accelerate \<br />--cdrom /var/vps/install-amd64-minimal-20111201.iso \<br />--vnc \<br />--vncport=5911 \<br />--vnclisten=0.0.0.0</pre>&#8211;name 指定虚拟机名称，virsh操作指定虚拟机时所需要的参数，不可以重复。<br />&#8211;ram 分配内存大小，安装完成后可以用 virsh 调整。<br />&#8211;vcpus 分配CPU核心数，最大与实体机CPU核心数相同，安装完成后也可以用 virsh 调整。<br />&#8211;disk 指定虚拟机镜像， size 指定分配大小单位为G。<br />&#8211;network 网络类型，此处用的是默认，一般用的应该是&nbsp;bridge 桥接，这个下次再说。<br />&#8211;os-variant 指定操作系统类型，此处使用的是标准Linux 2.6，其他的可以通过 man virt-install 详细查看。<br />&#8211;accelerate 呃，加速，具体什么原理还不太清楚。<br />&#8211;cdrom 指定安装镜像所在。<br />&#8211;vnc 启用VNC远程管理，一般安装系统都要启用。<br />&#8211;vncport 指定 VNC 监控端口，默认端口为 5900。<br />&#8211;vnclisten 指定 VNC 绑定IP，默认绑定127.0.0.1，这里将其改为 0.0.0.0 以便可以通过外部连接。<br />执行后如果没有安装 virt-viewer 或没有 X Window 系统可能会提示 virt-viewer 启动失败，不过没关系，使用 VNC Viewer 或者 MAC 下使用Chicken of the VNC连接到实体机，端口使用上面指定的就可以操作安装过程。另外需要注意的是，某些系统安装盘有等待输入时间，超过时间会自动使用硬盘启动，所以VNC连接一定要快，否则就需要 virsh&nbsp;destroy 然后 virsh start 再启动，因为系统尚未安装成功，此时的 virsh reboot 执行是无效的。<br /><h2>virsh 常用命令</h2>virsh list 列出当前虚拟机列表，貌似不包括未启动的。<br />virsh start domain-name 启动指定虚拟机。<br />virsh shutdown domain-name 停止指定虚拟机，执行此命令后 virsh list 里将不出现。<br />virsh reboot domain-name 重新启动指定虚拟机，这个命令貌似必须系统安装完成后才有效。<br />virsh autostart domain-name 指定虚拟机开机自动启动，需要 libvirtd 服务默认启动。<br />还有更多，一时也没全搞明白，全写出来估计可以写本手册了。<br /><h2>其他</h2>虚拟机配置存储在 /etc/libvirt/qemu 目录，配置文件为XML格式。<br />自动启动的虚拟机在 /etc/libvirt/qemu/autostart 目录。</div>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
+      <h1 class="entry-title"><a href="/2011/12/libvirtqemu.html">Libvirt与qemu 几个常用命令</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
 
@@ -107,27 +113,88 @@
   
 
 
-<time datetime="2011-12-10T18:30:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time></div>
-	<div class="tags">
+<time datetime="2011-12-31T19:30:00+08:00" pubdate data-updated="true">Dec 31<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
 
 
-	<a class='category' href='/blog/categories/centos/'>CentOS</a>, <a class='category' href='/blog/categories/kvm/'>KVM</a>, <a class='category' href='/blog/categories/虚拟化/'>虚拟化</a>
-
-
+  <div class="entry-content"><div class='post'>
+<h2>克隆一个虚拟机：</h2><pre>virt-clone -o formdomain -n todomain -f /path/filename.img</pre><h2>转换镜像格式：</h2><pre>qemu-img convert -O qcow2 filename.img filename.qcow2</pre><p>支持的格式：raw、qcow、qcow2、vmdk、vdi</p><h2>查看一个镜像的信息：</h2><pre>qcmu-img info filename.img</pre><h2>调整镜像大小</h2><pre>qemu-img resize filename.img +|-size</pre></div>
 </div>
-	
-</div></article>
+  
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li.html">
-		
-			simplejson处理不严谨JSON一例</a>
-	</h2>
-	<div class="entry-content">
-		<p>一个标准、严谨的JSON应该如下：</p>
+    </article>
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/2011/12/centos-6-kvm_10.html">CentOS 6 安装配置KVM小记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-10T18:30:00+08:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+作为一名半调子系统管理员，XEN那dom0,domU还要编译内核，这简直要了我的亲命，KVM作为一个CentOS 6开始唯一内置支持的虚拟化，安装配置简单，很适合我。<br /><h2>安装：</h2>KVM需要CPU支持vmx(Intel)或svm(AMD)。<br /><pre>$ cat /proc/cpuinfo | egrep 'vmx|svm'<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save<br />flags: fpu vme de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pat pse36 <br />clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm <br />3dnowext 3dnow constant_tsc rep_good nonstop_tsc extd_apicid pni monitor <br />cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a <br />misalignsse 3dnowprefetch osvw ibs skinit wdt npt lbrv svm_lock nrip_save</pre>安装KVM组件<br /><pre># yum groupinstall&nbsp;Virtualization<br /># yum groupinstall&nbsp;"Virtualization Platform"</pre>重启后检查是否安装成功，若使用Intel CPU会显示 kvm_intel。<br /><pre># lsmod | grep kvm<br />kvm_amd &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;37434 &nbsp;4&nbsp;<br />kvm &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 292815 &nbsp;1 kvm_amd</pre>OK，就这么简单，KVM安装完成。<br /><h2>周边工具：</h2>virt-manger与virt-viewer是基于X Window的图形化管理工具，优点呢就是操作简单、鼠标点点，坏处自然就是要装一堆图形组件，对于服务器来说这些东西有些太多余。<br />服务器上最好用的当然是命令行工具<br /><pre>yum install libvirt-client&nbsp;python-virtinst</pre>libvirt-client 提供了 virsh，主要功能为：启动、重启、停止等管理功能。<br />python-virtinst 提供了 virt-install 安装工具。<br /><h2>安装虚拟机</h2><pre>#&amp;nbsp;virt-install \<br />--name gentoo6 \<br />--ram 512 \<br />--vcpus=1 \<br />--disk path=/var/vps/gentoo6.img,size=4 \<br />--network network:default \<br />--os-variant=generic26 \<br />--accelerate \<br />--cdrom /var/vps/install-amd64-minimal-20111201.iso \<br />--vnc \<br />--vncport=5911 \<br />--vnclisten=0.0.0.0</pre>&#8211;name 指定虚拟机名称，virsh操作指定虚拟机时所需要的参数，不可以重复。<br />&#8211;ram 分配内存大小，安装完成后可以用 virsh 调整。<br />&#8211;vcpus 分配CPU核心数，最大与实体机CPU核心数相同，安装完成后也可以用 virsh 调整。<br />&#8211;disk 指定虚拟机镜像， size 指定分配大小单位为G。<br />&#8211;network 网络类型，此处用的是默认，一般用的应该是&nbsp;bridge 桥接，这个下次再说。<br />&#8211;os-variant 指定操作系统类型，此处使用的是标准Linux 2.6，其他的可以通过 man virt-install 详细查看。<br />&#8211;accelerate 呃，加速，具体什么原理还不太清楚。<br />&#8211;cdrom 指定安装镜像所在。<br />&#8211;vnc 启用VNC远程管理，一般安装系统都要启用。<br />&#8211;vncport 指定 VNC 监控端口，默认端口为 5900。<br />&#8211;vnclisten 指定 VNC 绑定IP，默认绑定127.0.0.1，这里将其改为 0.0.0.0 以便可以通过外部连接。<br />执行后如果没有安装 virt-viewer 或没有 X Window 系统可能会提示 virt-viewer 启动失败，不过没关系，使用 VNC Viewer 或者 MAC 下使用Chicken of the VNC连接到实体机，端口使用上面指定的就可以操作安装过程。另外需要注意的是，某些系统安装盘有等待输入时间，超过时间会自动使用硬盘启动，所以VNC连接一定要快，否则就需要 virsh&nbsp;destroy 然后 virsh start 再启动，因为系统尚未安装成功，此时的 virsh reboot 执行是无效的。<br /><h2>virsh 常用命令</h2>virsh list 列出当前虚拟机列表，貌似不包括未启动的。<br />virsh start domain-name 启动指定虚拟机。<br />virsh shutdown domain-name 停止指定虚拟机，执行此命令后 virsh list 里将不出现。<br />virsh reboot domain-name 重新启动指定虚拟机，这个命令貌似必须系统安装完成后才有效。<br />virsh autostart domain-name 指定虚拟机开机自动启动，需要 libvirtd 服务默认启动。<br />还有更多，一时也没全搞明白，全写出来估计可以写本手册了。<br /><h2>其他</h2>虚拟机配置存储在 /etc/libvirt/qemu 目录，配置文件为XML格式。<br />自动启动的虚拟机在 /etc/libvirt/qemu/autostart 目录。</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/2010/12/simplejsonchu-li-bu-yan-jin-jsonyi-li.html">simplejson处理不严谨JSON一例</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-20T03:08:22+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>一个标准、严谨的JSON应该如下：</p>
 
 <pre><code>{"title": "\u6587\u7ae0\u6807\u9898\n\u6362\u884c"}
 </code></pre>
@@ -160,14 +227,23 @@ column 15 (char 15)
 
 <pre><code>simplejson.loads(json, strict=False)
 </code></pre>
+</div>
+  
+  
 
-		
-		
-	</div>
 
-
-<div class="meta">
-	<div class="date">
+    </article>
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
+      <h1 class="entry-title"><a href="/2010/04/svn-cant-move-dot-svn-slash-tmp-slash-entries-to-dot-svn-slash-entries-operation-not-permitted.html">Svn: Can&#8217;t Move &#8216;.svn/tmp/entries&#8217; to &#8216;.svn/entries&#8217;: Operation Not Permitted</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
 
@@ -179,27 +255,14 @@ column 15 (char 15)
   
 
 
-<time datetime="2010-12-20T03:08:22+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2010</time></div>
-	<div class="tags">
+<time datetime="2010-04-09T18:27:41+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
 
 
-	<a class='category' href='/blog/categories/json/'>JSON</a>, <a class='category' href='/blog/categories/python/'>Python</a>
-
-
-</div>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/2010/04/svn-cant-move-dot-svn-slash-tmp-slash-entries-to-dot-svn-slash-entries-operation-not-permitted.html">
-		
-			Svn: Can&#8217;t Move &#8216;.svn/tmp/entries&#8217; to &#8216;.svn/entries&#8217;: Operation Not Permitted</a>
-	</h2>
-	<div class="entry-content">
-		<p>SVN 总是在 Mac OS 下出现这句错误提示，这个问题一般在与 Windows 共用一个目录，并在 Windows 下进行过 svn up 操作后，<a href="http://www.devcha.com/2008/03/mac-os-cant-move-svntmpentries-to.html">老外</a>对此给出了解决方法，但是最近这个站点在国内经常打不开，在此记一笔为自己备记。</p>
+  <div class="entry-content"><p>SVN 总是在 Mac OS 下出现这句错误提示，这个问题一般在与 Windows 共用一个目录，并在 Windows 下进行过 svn up 操作后，<a href="http://www.devcha.com/2008/03/mac-os-cant-move-svntmpentries-to.html">老外</a>对此给出了解决方法，但是最近这个站点在国内经常打不开，在此记一笔为自己备记。</p>
 
 <p>进入项目目录执行：</p>
 
@@ -212,55 +275,106 @@ column 15 (char 15)
 </code></pre>
 
 <p>但是有时会依然会无法解决问题，两种方法都试试吧。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
+</div>
+  
+  
 
 
+    </article>
+  
+  <ul class="pager">
+    
+    <li><a href="/blog/archives">Blog Archives</a></li>
+    
+    <li class="next"><a href="/">Newer &rarr;</a></li>
+    
+  </ul>
+</div>
+<aside class="sidebar-nav span3">
+  
+    <section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/08/yi-zhi-libcurldao-android-ndk.html">移植libcurl到Android NDK</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/04/liveshows-in-mingyun-60s.html">终于上了一次电视</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html">开始使用vim作主要开发工具</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/12/down-themeforest-dot-net-theme.html">下载themeforest.net的主题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/12/octopress-ce-shi.html">Octopress 测试</a>
+      </li>
+    
+  </ul>
+</section>
 
+<section class="well">
+  <ul id="gh_repos" class="nav">
+    <li class="nav-header">GitHub Repos</li>
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/yinzhigang">@yinzhigang</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        github.showRepos({
+            user: 'yinzhigang',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/asides/github.js" type="text/javascript"> </script>
+</section>
 
 
 
 
 
   
+</aside>
 
-
-<time datetime="2010-04-09T18:27:41+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2010</time></div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/mac-os/'>Mac OS</a>, <a class='category' href='/blog/categories/svn/'>SVN</a>
-
-
-</div>
-	
-</div></article>
-
-<nav id="pagenavi">
-    
-        <a href="/" class="prev">Prev</a>
-    
-    
-    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
-</nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2013
-
-    殷志刚
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - 殷志刚 -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
 
 </footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
+  
+
 <script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
+      var disqus_shortname = 'yinzhigang';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
 
 
 
