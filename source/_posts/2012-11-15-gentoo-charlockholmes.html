@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Gentoo 安装 charlock_holmes"
+date: 2012-11-15T18:07:00+08:00
+comments: true
+categories:
+ - Git
+ - Linux
+---
+
+<div class='post'>
+<p>最近折腾gitlab + gitolite，安装到charlock_holmes一步出现一堆 undefined reference 错误，官方网站也有这么一个<a href="https://github.com/brianmario/charlock_holmes/issues/10" target="_blank">issue</a>。</p><p>解决办法：修改/usr/lib64/ruby/1.9.1/x86_64-linux/rbconfig.rb，删除CONFIG["LDFLAGS"] 一行最后的“-Wl,--no-undefined”，具体原因未知。</p></div>

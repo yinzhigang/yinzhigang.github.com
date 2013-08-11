@@ -1,0 +1,11 @@
+---
+layout: post
+title: "libvirt与qemu 几个常用命令"
+date: 2011-12-31T19:30:00+08:00
+comments: true
+categories:
+ - Linux
+---
+
+<div class='post'>
+<h2>克隆一个虚拟机：</h2><pre>virt-clone -o formdomain -n todomain -f /path/filename.img</pre><h2>转换镜像格式：</h2><pre>qemu-img convert -O qcow2 filename.img filename.qcow2</pre><p>支持的格式：raw、qcow、qcow2、vmdk、vdi</p><h2>查看一个镜像的信息：</h2><pre>qcmu-img info filename.img</pre><h2>调整镜像大小</h2><pre>qemu-img resize filename.img +|-size</pre></div>

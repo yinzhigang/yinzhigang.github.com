@@ -1,0 +1,12 @@
+---
+layout: post
+title: "KVM使用原生CPU"
+date: 2012-01-18T18:30:00+08:00
+comments: true
+categories:
+ - KVM
+ - Linux
+---
+
+<div class='post'>
+默认情况下 CentOS 6 安装虚拟机后的CPU是：QEMU Virtual CPU，一般使用是没有问题的，只是性能低下，PHP一个10万次循环的脚本居然需要执行50多秒，而母系统执行只需2秒多，差距有点儿太大。<br /><pre># virsh edit vm_name<br />&lt;domain type='kvm'&gt;<br />  ......<br />  &lt;qemu:commandline&gt;<br />    &lt;qemu:arg value='-cpu'/&gt;<br />    &lt;qemu:arg value='host'/&gt;<br />  &lt;/qemu:commandline&gt;<br />&lt;/domain&gt;<br /></pre>一般建议使用 virsh edit 编辑虚拟机配置文件，避免文件被破坏。</div>

@@ -1,0 +1,13 @@
+---
+layout: post
+title: "NDK note: the mangling of 'va_list' has changed in GCC 4.4"
+date: 2012-11-13T18:05:00+08:00
+#external-url: 2012/11/ndk-note-mangling-of-valist-has-changed.html
+comments: true
+categories:
+ - Android
+ - NDK
+---
+
+<div class='post'>
+<p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
