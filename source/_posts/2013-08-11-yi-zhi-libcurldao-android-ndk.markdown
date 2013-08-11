@@ -77,3 +77,5 @@ categories: [Android, NDK]
     LOCAL_STATIC_LIBRARIES := libcurl
     LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
     LOCAL_LDLIBS    += -lz
+
+参考：http://stackoverflow.com/questions/11330180/porting-libcurl-on-android-with-ssl-support
