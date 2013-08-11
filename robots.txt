@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://yinzhigang.github.io/sitemap.xml 
+Sitemap: http://www.zhigang.net/sitemap.xml 
