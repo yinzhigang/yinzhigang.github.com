@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linux | 殷志刚]]></title>
-  <link href="http://www.zhigang.net/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://www.zhigang.net/"/>
-  <updated>2013-08-11T20:29:07+08:00</updated>
-  <id>http://www.zhigang.net/</id>
+  <link href="http://zhigang.net/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://zhigang.net/"/>
+  <updated>2013-08-11T20:32:28+08:00</updated>
+  <id>http://zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[GitLab 官方安装文档中文翻译]]></title>
-    <link href="http://www.zhigang.net/2012/11/gitlab.html"/>
+    <link href="http://zhigang.net/2012/11/gitlab.html"/>
     <updated>2012-11-18T22:03:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/11/gitlab</id>
+    <id>http://zhigang.net/2012/11/gitlab</id>
     <content type="html"><![CDATA[<p>译者注：gitlabhq + gitolite是目前为止个人认为最好用的 git 中心库管理系统，但是其安装配置不是一般的复杂，找了半天没发现完整的中文安装文档，只好依靠自己蹩脚的英文班门弄斧下，若有错误还请见谅。</p>
 
 
@@ -310,9 +310,9 @@
   
   <entry>
     <title type="html"><![CDATA[Gentoo 安装 charlock_holmes]]></title>
-    <link href="http://www.zhigang.net/2012/11/gentoo-charlockholmes.html"/>
+    <link href="http://zhigang.net/2012/11/gentoo-charlockholmes.html"/>
     <updated>2012-11-15T18:07:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/11/gentoo-charlockholmes</id>
+    <id>http://zhigang.net/2012/11/gentoo-charlockholmes</id>
     <content type="html"><![CDATA[<div class='post'>
 <p>最近折腾gitlab + gitolite，安装到charlock_holmes一步出现一堆 undefined reference 错误，官方网站也有这么一个<a href="https://github.com/brianmario/charlock_holmes/issues/10" target="_blank">issue</a>。</p><p>解决办法：修改/usr/lib64/ruby/1.9.1/x86_64-linux/rbconfig.rb，删除CONFIG["LDFLAGS"] 一行最后的“-Wl,--no-undefined”，具体原因未知。</p></div>
 
@@ -321,9 +321,9 @@
   
   <entry>
     <title type="html"><![CDATA[KVM使用原生CPU]]></title>
-    <link href="http://www.zhigang.net/2012/01/kvmcpu.html"/>
+    <link href="http://zhigang.net/2012/01/kvmcpu.html"/>
     <updated>2012-01-18T18:30:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/01/kvmcpu</id>
+    <id>http://zhigang.net/2012/01/kvmcpu</id>
     <content type="html"><![CDATA[<div class='post'>
 默认情况下 CentOS 6 安装虚拟机后的CPU是：QEMU Virtual CPU，一般使用是没有问题的，只是性能低下，PHP一个10万次循环的脚本居然需要执行50多秒，而母系统执行只需2秒多，差距有点儿太大。<br /><pre># virsh edit vm_name<br />&lt;domain type='kvm'&gt;<br />  ......<br />  &lt;qemu:commandline&gt;<br />    &lt;qemu:arg value='-cpu'/&gt;<br />    &lt;qemu:arg value='host'/&gt;<br />  &lt;/qemu:commandline&gt;<br />&lt;/domain&gt;<br /></pre>一般建议使用 virsh edit 编辑虚拟机配置文件，避免文件被破坏。</div>
 
@@ -332,9 +332,9 @@
   
   <entry>
     <title type="html"><![CDATA[libvirt与qemu 几个常用命令]]></title>
-    <link href="http://www.zhigang.net/2011/12/libvirtqemu.html"/>
+    <link href="http://zhigang.net/2011/12/libvirtqemu.html"/>
     <updated>2011-12-31T19:30:00+08:00</updated>
-    <id>http://www.zhigang.net/2011/12/libvirtqemu</id>
+    <id>http://zhigang.net/2011/12/libvirtqemu</id>
     <content type="html"><![CDATA[<div class='post'>
 <h2>克隆一个虚拟机：</h2><pre>virt-clone -o formdomain -n todomain -f /path/filename.img</pre><h2>转换镜像格式：</h2><pre>qemu-img convert -O qcow2 filename.img filename.qcow2</pre><p>支持的格式：raw、qcow、qcow2、vmdk、vdi</p><h2>查看一个镜像的信息：</h2><pre>qcmu-img info filename.img</pre><h2>调整镜像大小</h2><pre>qemu-img resize filename.img +|-size</pre></div>
 

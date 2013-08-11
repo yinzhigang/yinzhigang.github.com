@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: wget | 殷志刚]]></title>
-  <link href="http://www.zhigang.net/blog/categories/wget/atom.xml" rel="self"/>
-  <link href="http://www.zhigang.net/"/>
-  <updated>2013-08-11T20:29:07+08:00</updated>
-  <id>http://www.zhigang.net/</id>
+  <link href="http://zhigang.net/blog/categories/wget/atom.xml" rel="self"/>
+  <link href="http://zhigang.net/"/>
+  <updated>2013-08-11T20:32:28+08:00</updated>
+  <id>http://zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[下载themeforest.net的主题]]></title>
-    <link href="http://www.zhigang.net/2012/12/down-themeforest-dot-net-theme.html"/>
+    <link href="http://zhigang.net/2012/12/down-themeforest-dot-net-theme.html"/>
     <updated>2012-12-10T18:35:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/12/down-themeforest-dot-net-theme</id>
+    <id>http://zhigang.net/2012/12/down-themeforest-dot-net-theme</id>
     <content type="html"><![CDATA[<p>themeforest.net有很多漂亮的主题，但都是收费的而且还不便宜。但幸好很多主题都提供预览功能，这时我们就可以使用wget神器将HTML、CSS、JS、图片等下载下来，当然Wordpress之类的主题就需要自己写程序来实现功能了。</p>
 
 <p>比如<a href="http://themeforest.net/item/ninja-admin-/21190">这个</a>简洁的后台管理模板，我们点 Live Prefiew 找到真正的预览地址：<a href="http://benblogged.com/dev/ninja_admin/">http://benblogged.com/dev/ninja_admin/</a></p>

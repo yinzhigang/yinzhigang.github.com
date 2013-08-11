@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | 殷志刚]]></title>
-  <link href="http://www.zhigang.net/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://www.zhigang.net/"/>
-  <updated>2013-08-11T20:29:07+08:00</updated>
-  <id>http://www.zhigang.net/</id>
+  <link href="http://zhigang.net/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://zhigang.net/"/>
+  <updated>2013-08-11T20:32:28+08:00</updated>
+  <id>http://zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress 测试]]></title>
-    <link href="http://www.zhigang.net/2012/12/octopress-ce-shi.html"/>
+    <link href="http://zhigang.net/2012/12/octopress-ce-shi.html"/>
     <updated>2012-12-03T00:10:00+08:00</updated>
-    <id>http://www.zhigang.net/2012/12/octopress-ce-shi</id>
+    <id>http://zhigang.net/2012/12/octopress-ce-shi</id>
     <content type="html"><![CDATA[<p>第一次使用 Octopress，看起来是我喜欢的风格，希望可以让我继续写下去。</p>
 ]]></content>
   </entry>
