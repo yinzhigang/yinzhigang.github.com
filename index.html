@@ -186,11 +186,9 @@ mark
 <p>复制 libcurl.a 到项目 jni/ 目录，修改 Android.mk 文件：</p>
 
 <pre><code># A simple test for the minimal standard C++ library
-</code></pre>
+#
 
-<p>#</p>
-
-<pre><code>LOCAL_PATH := $(call my-dir)
+LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := curl
