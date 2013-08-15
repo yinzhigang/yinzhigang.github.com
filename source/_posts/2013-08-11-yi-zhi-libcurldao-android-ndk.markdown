@@ -61,7 +61,7 @@ categories: [Android, NDK]
 复制 libcurl.a 到项目 jni/ 目录，修改 Android.mk 文件：
 
     # A simple test for the minimal standard C++ library
-#
+    #
 
     LOCAL_PATH := $(call my-dir)
 
