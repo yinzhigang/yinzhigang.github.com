@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>NDK note: the mangling of 'va_list' has changed in GCC 4.4 - 殷志刚</title>
+  <title>JAVA+jni 包名或方法名中含有下划线(_)的解决方法 - 殷志刚</title>
   <meta name="author" content="殷志刚">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html">
+  <link rel="canonical" href="http://zhigang.net/2013/08/underline-in-jni.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">NDK Note: The Mangling of 'Va_list' Has Changed in GCC 4.4</h1>
+      <h1 class="entry-title">JAVA+jni 包名或方法名中含有下划线(_)的解决方法</h1>
     
     
       <p class="meta">
@@ -111,15 +111,38 @@
   
 
 
-<time datetime="2012-11-13T18:05:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2012</time>
+<time datetime="2013-08-15T22:09:00+08:00" pubdate data-updated="true">Aug 15<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><div class='post'>
-<p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
+<div class="entry-content"><p>jni或NDK定义C函数是用下划线(_)作为命名分隔。但如果JAVA包名或方法名里包含了_ 那么就会发生找不到函数的错误，对此网上的各教程都说不要使用 _，对于新项目，这种情况当然很容易避免，但若对一原有项目开发jni接口就麻烦了，特别是在 Android 平台下，包名决定着应用的唯一识别，轻易改不的。</p>
+
+<p>经过不懈的努力，我终于找到了解决方法，简单来说就是在 _ 后加1，如：</p>
+
+<pre><code>// JAVA
+package net.zhigang.ndk_test;
+
+public class NdkTest
+{
+    static {
+        System.loadLibrary(ndktest);
+    }
+    public native void sayHello();
+}
+
+//C
+\#include &lt;jni.h&gt;
+
+jstring Java_net_zhigang_ndk_1test(JNIEnv* env, jobject thiz)
+{
+    return env-&gt;NewStringUTF("Hello from jni");
+}
+</code></pre>
+
+<p>注意上面C语言部分的 ndk_1test。</p>
 </div>
 
 
@@ -142,12 +165,12 @@
   
 
 
-<time datetime="2012-11-13T18:05:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2012</time>
+<time datetime="2013-08-15T22:09:00+08:00" pubdate data-updated="true">Aug 15<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/ndk/'>NDK</a>
+    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/ndk/'>NDK</a>
   
 </span>
 
@@ -171,14 +194,10 @@
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2012/01/kvmcpu.html" title="Previous Post:
-        KVM使用原生CPU">&laquo; KVM使用原生CPU</a></li>
+        href="/2013/08/yi-zhi-libcurldao-android-ndk.html" title="Previous Post:
+        移植libcurl到Android NDK">&laquo; 移植libcurl到Android NDK</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2012/11/gentoo-charlockholmes.html"
-        title="Next Post: Gentoo 安装 charlock_holmes">Gentoo 安装 charlock_holmes
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -258,8 +277,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html';
-        var disqus_url = 'http://zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html';
+        var disqus_identifier = 'http://zhigang.net/2013/08/underline-in-jni.html';
+        var disqus_url = 'http://zhigang.net/2013/08/underline-in-jni.html';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -4,7 +4,7 @@
   <title><![CDATA[殷志刚]]></title>
   <link href="http://zhigang.net/atom.xml" rel="self"/>
   <link href="http://zhigang.net/"/>
-  <updated>2013-08-12T10:19:55+08:00</updated>
+  <updated>2013-08-15T22:25:36+08:00</updated>
   <id>http://zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JAVA+jni 包名或方法名中含有下划线(_)的解决方法]]></title>
+    <link href="http://zhigang.net/2013/08/underline-in-jni.html"/>
+    <updated>2013-08-15T22:09:00+08:00</updated>
+    <id>http://zhigang.net/2013/08/underline-in-jni</id>
+    <content type="html"><![CDATA[<p>jni或NDK定义C函数是用下划线(_)作为命名分隔。但如果JAVA包名或方法名里包含了_ 那么就会发生找不到函数的错误，对此网上的各教程都说不要使用 _，对于新项目，这种情况当然很容易避免，但若对一原有项目开发jni接口就麻烦了，特别是在 Android 平台下，包名决定着应用的唯一识别，轻易改不的。</p>
+
+<p>经过不懈的努力，我终于找到了解决方法，简单来说就是在 _ 后加1，如：</p>
+
+<pre><code>// JAVA
+package net.zhigang.ndk_test;
+
+public class NdkTest
+{
+    static {
+        System.loadLibrary(ndktest);
+    }
+    public native void sayHello();
+}
+
+//C
+\#include &lt;jni.h&gt;
+
+jstring Java_net_zhigang_ndk_1test(JNIEnv* env, jobject thiz)
+{
+    return env-&gt;NewStringUTF("Hello from jni");
+}
+</code></pre>
+
+<p>注意上面C语言部分的 ndk_1test。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[移植libcurl到Android NDK]]></title>

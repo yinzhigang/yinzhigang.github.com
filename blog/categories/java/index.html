@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>NDK note: the mangling of 'va_list' has changed in GCC 4.4 - 殷志刚</title>
+  <title>Category: Java - 殷志刚</title>
   <meta name="author" content="殷志刚">
 
   
-  <meta name="description" content="技术备忘，随想随笔">
+  <meta name="description" content="Category: Java">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html">
+  <link rel="canonical" href="http://zhigang.netblog/categories/java/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -90,98 +90,38 @@
   <div class="container">
     <div class="row-fluid">
       
-<article class="hentry span9" role="article">
+<article role="article" class="span9">
 
   
   <header class="page-header">
-    
-      <h1 class="entry-title">NDK Note: The Mangling of 'Va_list' Has Changed in GCC 4.4</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-13T18:05:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2012</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Java</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><div class='post'>
-<p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
+
+  
+  <h1>2013</h1>
+
+<article>
+  <div class="well">
+
+<h2><a href="/2013/08/underline-in-jni.html">JAVA+jni 包名或方法名中含有下划线(_)的解决方法</a></h2>
+<time datetime="2013-08-15T22:09:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>15</span> <span class='year'>2013</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/ndk/'>NDK</a></span>
+</footer>
+
 </div>
 
+</article>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">殷志刚</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-13T18:05:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2012</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/ndk/'>NDK</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
 </div>
 
-    
-    
-    <section>
-      <h1>Comments</h1>
-      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-    </section>
-    
-    <ul class="pager">
-      
-      <li class="previous"><a class="basic-alignment left"
-        href="/2012/01/kvmcpu.html" title="Previous Post:
-        KVM使用原生CPU">&laquo; KVM使用原生CPU</a></li>
-      
-      <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2012/11/gentoo-charlockholmes.html"
-        title="Next Post: Gentoo 安装 charlock_holmes">Gentoo 安装 charlock_holmes
-        &raquo;</a></li>
-      
-    </ul>
-  </footer>
+  
 </article>
 
 <aside class="sidebar-nav span3">
@@ -257,10 +197,7 @@
       var disqus_shortname = 'yinzhigang';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html';
-        var disqus_url = 'http://zhigang.net/2012/11/ndk-note-mangling-of-valist-has-changed.html';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
