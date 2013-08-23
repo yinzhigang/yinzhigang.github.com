@@ -97,6 +97,54 @@
       
   <header class="page-header">
     
+      <h1 class="entry-title"><a href="/2013/08/batch-convert-encoding.html">批量转换文件编码</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>适用于Linux及 Mac OS 系统，Windows就抱歉了，你们自己想办法吧。</p>
+
+<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; /tmp/iconv.tmp" \; -exec mv /tmp/iconv.tmp '{}' \;
+</code></pre>
+
+<p>以上命令将所有 .java 文件由GBK编码转换为UTF8编码。</p>
+
+<p>注意，网上有很多文章将 iconv 命令写成这样：</p>
+
+<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; {}" \;
+</code></pre>
+
+<p>再说一句，上面这种写法是错误的，以上写法相当于 iconv 输出到源文件，但不知是BUG还是别的原因，你只能得到0字节的空文件，所以必须使用第一条命令，先生成到一个临时文件，然后再移动回来。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header class="page-header">
+    
       <h1 class="entry-title"><a href="/2013/08/underline-in-jni.html">JAVA+jni 包名或方法名中含有下划线(_)的解决方法</a></h1>
     
     
@@ -576,43 +624,6 @@ LOCAL_LDLIBS    += -lz
 
     </article>
   
-  
-    <article>
-      
-  <header class="page-header">
-    
-      <h1 class="entry-title"><a href="/2012/11/ndk-note-mangling-of-valist-has-changed.html">NDK Note: The Mangling of &#8216;Va_list&#8217; Has Changed in GCC 4.4</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-13T18:05:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<p>最近搞NDK，一切还算顺利，只是每次ndk-build都会提示：</p><blockquote><pre>In file included from jni/fskmodule.cpp:7:0:<br />/xxxx/usr/include/jni.h:592:13: note: the mangling of 'va_list' has changed in GCC 4.4</pre></blockquote><p>解决办法，修改 Android.mk，加一行：</p><blockquote><pre>LOCAL_CFLAGS = -Wno-psabi</pre></blockquote></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/blog/page/2/">&larr; Older</a></li>
@@ -628,6 +639,10 @@ LOCAL_LDLIBS    += -lz
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/08/batch-convert-encoding.html">批量转换文件编码</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/08/underline-in-jni.html">JAVA+jni 包名或方法名中含有下划线(_)的解决方法</a>
       </li>
     
@@ -641,10 +656,6 @@ LOCAL_LDLIBS    += -lz
     
       <li class="post">
         <a href="/2012/12/kai-shi-shi-yong-vimzuo-zhu-yao-kai-fa-gong-ju.html">开始使用vim作主要开发工具</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/12/down-themeforest-dot-net-theme.html">下载themeforest.net的主题</a>
       </li>
     
   </ul>

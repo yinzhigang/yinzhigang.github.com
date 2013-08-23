@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Gentoo 安装 charlock_holmes - 殷志刚</title>
+  <title>批量转换文件编码 - 殷志刚</title>
   <meta name="author" content="殷志刚">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhigang.net/2012/11/gentoo-charlockholmes.html">
+  <link rel="canonical" href="http://zhigang.net/2013/08/batch-convert-encoding.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">Gentoo 安装 Charlock_holmes</h1>
+      <h1 class="entry-title">批量转换文件编码</h1>
     
     
       <p class="meta">
@@ -111,15 +111,26 @@
   
 
 
-<time datetime="2012-11-15T18:07:00+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2012</time>
+<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><div class='post'>
-<p>最近折腾gitlab + gitolite，安装到charlock_holmes一步出现一堆 undefined reference 错误，官方网站也有这么一个<a href="https://github.com/brianmario/charlock_holmes/issues/10" target="_blank">issue</a>。</p><p>解决办法：修改/usr/lib64/ruby/1.9.1/x86_64-linux/rbconfig.rb，删除CONFIG[&#8220;LDFLAGS&#8221;] 一行最后的“-Wl,&#8211;no-undefined”，具体原因未知。</p></div>
+<div class="entry-content"><p>适用于Linux及 Mac OS 系统，Windows就抱歉了，你们自己想办法吧。</p>
+
+<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; /tmp/iconv.tmp" \; -exec mv /tmp/iconv.tmp '{}' \;
+</code></pre>
+
+<p>以上命令将所有 .java 文件由GBK编码转换为UTF8编码。</p>
+
+<p>注意，网上有很多文章将 iconv 命令写成这样：</p>
+
+<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; {}" \;
+</code></pre>
+
+<p>再说一句，上面这种写法是错误的，以上写法相当于 iconv 输出到源文件，但不知是BUG还是别的原因，你只能得到0字节的空文件，所以必须使用第一条命令，先生成到一个临时文件，然后再移动回来。</p>
 </div>
 
 
@@ -142,14 +153,8 @@
   
 
 
-<time datetime="2012-11-15T18:07:00+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2012</time>
+<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/git/'>Git</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>
-  
-</span>
 
 
     </p>
@@ -171,14 +176,10 @@
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2012/11/ndk-note-mangling-of-valist-has-changed.html" title="Previous Post:
-        NDK note: the mangling of 'va_list' has changed in GCC 4.4">&laquo; NDK note: the mangling of 'va_list' has changed in GCC 4.4</a></li>
+        href="/2013/08/underline-in-jni.html" title="Previous Post:
+        JAVA+jni 包名或方法名中含有下划线(_)的解决方法">&laquo; JAVA+jni 包名或方法名中含有下划线(_)的解决方法</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2012/11/ndkjni-javac.html"
-        title="Next Post: NDK(jni) JAVA与C互传数组对象">NDK(jni) JAVA与C互传数组对象
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -258,8 +259,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhigang.net/2012/11/gentoo-charlockholmes.html';
-        var disqus_url = 'http://zhigang.net/2012/11/gentoo-charlockholmes.html';
+        var disqus_identifier = 'http://zhigang.net/2013/08/batch-convert-encoding.html';
+        var disqus_url = 'http://zhigang.net/2013/08/batch-convert-encoding.html';
         var disqus_script = 'embed.js';
       
     (function () {

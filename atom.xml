@@ -4,7 +4,7 @@
   <title><![CDATA[殷志刚]]></title>
   <link href="http://zhigang.net/atom.xml" rel="self"/>
   <link href="http://zhigang.net/"/>
-  <updated>2013-08-15T22:25:36+08:00</updated>
+  <updated>2013-08-24T00:24:04+08:00</updated>
   <id>http://zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[批量转换文件编码]]></title>
+    <link href="http://zhigang.net/2013/08/batch-convert-encoding.html"/>
+    <updated>2013-08-24T00:18:00+08:00</updated>
+    <id>http://zhigang.net/2013/08/batch-convert-encoding</id>
+    <content type="html"><![CDATA[<p>适用于Linux及 Mac OS 系统，Windows就抱歉了，你们自己想办法吧。</p>
+
+<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; /tmp/iconv.tmp" \; -exec mv /tmp/iconv.tmp '{}' \;
+</code></pre>
+
+<p>以上命令将所有 .java 文件由GBK编码转换为UTF8编码。</p>
+
+<p>注意，网上有很多文章将 iconv 命令写成这样：</p>
+
+<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; {}" \;
+</code></pre>
+
+<p>再说一句，上面这种写法是错误的，以上写法相当于 iconv 输出到源文件，但不知是BUG还是别的原因，你只能得到0字节的空文件，所以必须使用第一条命令，先生成到一个临时文件，然后再移动回来。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JAVA+jni 包名或方法名中含有下划线(_)的解决方法]]></title>
