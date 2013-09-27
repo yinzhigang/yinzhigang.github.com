@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>批量转换文件编码 - 殷志刚</title>
+  <title>OpenStack安装笔记 - 殷志刚</title>
   <meta name="author" content="殷志刚">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhigang.net/2013/08/batch-convert-encoding.html">
+  <link rel="canonical" href="http://zhigang.net/2013/09/openstack-install-notes.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@
   
   <header class="page-header">
     
-      <h1 class="entry-title">批量转换文件编码</h1>
+      <h1 class="entry-title">OpenStack安装笔记</h1>
     
     
       <p class="meta">
@@ -111,26 +111,28 @@
   
 
 
-<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
+<time datetime="2013-09-26T15:04:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>适用于Linux及 Mac OS 系统，Windows就抱歉了，你们自己想办法吧。</p>
+<div class="entry-content"><p>折腾一个礼拜，终于算把OpenStack搭起来了。</p>
 
-<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; /tmp/iconv.tmp" \; -exec mv /tmp/iconv.tmp '{}' \;
-</code></pre>
+<p>教程：<a href="https://github.com/ist0ne/OpenStack-Grizzly-Install-Guide-CN/blob/OVS_Quantum_MutliNode/OpenStack_Grizzly_Install_Guide.rst">https://github.com/ist0ne/OpenStack-Grizzly-Install-Guide-CN/blob/OVS_Quantum_MutliNode/OpenStack_Grizzly_Install_Guide.rst</a></p>
 
-<p>以上命令将所有 .java 文件由GBK编码转换为UTF8编码。</p>
+<p>安装OpenVSwitch时遇到了点问题，模块编译通不过，后来发现Ubuntu内核版本为3.8，应该是OpenVSwitch还不支持，改用3.2版内核后成功安装。</p>
 
-<p>注意，网上有很多文章将 iconv 命令写成这样：</p>
+<p>虚拟机默认CPU是QEMU的虚拟CPU，性能极差，修改 /etc/nova/nova.conf，增加 libvirt_cpu_mode = host-passthrough 可直接使用物理机CPU，达到最大性能。但注意，只有KVM支持host-passthrough。详细说明：<a href="https://wiki.openstack.org/wiki/LibvirtXMLCPUModel">https://wiki.openstack.org/wiki/LibvirtXMLCPUModel</a></p>
 
-<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; {}" \;
-</code></pre>
+<p>几个有用的资源：</p>
 
-<p>再说一句，上面这种写法是错误的，以上写法相当于 iconv 输出到源文件，但不知是BUG还是别的原因，你只能得到0字节的空文件，所以必须使用第一条命令，先生成到一个临时文件，然后再移动回来。</p>
+<p>陈沙克日志：<a href="http://www.chenshake.com/">http://www.chenshake.com/</a>  国内OpenStack大牛</p>
+
+<p>puppet-openstack: <a href="https://github.com/stackforge/puppet-openstack">https://github.com/stackforge/puppet-openstack</a> Puppet部署模块，正式环境大规模部署我计划用这个</p>
+
+<p>Ubuntu OpenStack包地址: <a href="http://ubuntu-cloud.archive.canonical.com/ubuntu/dists/precise-updates/">http://ubuntu-cloud.archive.canonical.com/ubuntu/dists/precise-updates/</a> 包括最新的Havana测试版也在，回头试试。</p>
 </div>
 
 
@@ -153,8 +155,14 @@
   
 
 
-<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
+<time datetime="2013-09-26T15:04:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2013</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/openstack/'>OpenStack</a>
+  
+</span>
 
 
     </p>
@@ -176,14 +184,10 @@
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/08/underline-in-jni.html" title="Previous Post:
-        JAVA+jni 包名或方法名中含有下划线(_)的解决方法">&laquo; JAVA+jni 包名或方法名中含有下划线(_)的解决方法</a></li>
+        href="/2013/08/batch-convert-encoding.html" title="Previous Post:
+        批量转换文件编码">&laquo; 批量转换文件编码</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/09/openstack-install-notes.html"
-        title="Next Post: OpenStack安装笔记">OpenStack安装笔记
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -263,8 +267,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhigang.net/2013/08/batch-convert-encoding.html';
-        var disqus_url = 'http://zhigang.net/2013/08/batch-convert-encoding.html';
+        var disqus_identifier = 'http://zhigang.net/2013/09/openstack-install-notes.html';
+        var disqus_url = 'http://zhigang.net/2013/09/openstack-install-notes.html';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -4,7 +4,7 @@
   <title><![CDATA[殷志刚]]></title>
   <link href="http://zhigang.net/atom.xml" rel="self"/>
   <link href="http://zhigang.net/"/>
-  <updated>2013-08-24T00:24:04+08:00</updated>
+  <updated>2013-09-28T01:56:07+08:00</updated>
   <id>http://zhigang.net/</id>
   <author>
     <name><![CDATA[殷志刚]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[OpenStack安装笔记]]></title>
+    <link href="http://zhigang.net/2013/09/openstack-install-notes.html"/>
+    <updated>2013-09-26T15:04:00+08:00</updated>
+    <id>http://zhigang.net/2013/09/openstack-install-notes</id>
+    <content type="html"><![CDATA[<p>折腾一个礼拜，终于算把OpenStack搭起来了。</p>
+
+<p>教程：<a href="https://github.com/ist0ne/OpenStack-Grizzly-Install-Guide-CN/blob/OVS_Quantum_MutliNode/OpenStack_Grizzly_Install_Guide.rst">https://github.com/ist0ne/OpenStack-Grizzly-Install-Guide-CN/blob/OVS_Quantum_MutliNode/OpenStack_Grizzly_Install_Guide.rst</a></p>
+
+<p>安装OpenVSwitch时遇到了点问题，模块编译通不过，后来发现Ubuntu内核版本为3.8，应该是OpenVSwitch还不支持，改用3.2版内核后成功安装。</p>
+
+<p>虚拟机默认CPU是QEMU的虚拟CPU，性能极差，修改 /etc/nova/nova.conf，增加 libvirt_cpu_mode = host-passthrough 可直接使用物理机CPU，达到最大性能。但注意，只有KVM支持host-passthrough。详细说明：<a href="https://wiki.openstack.org/wiki/LibvirtXMLCPUModel">https://wiki.openstack.org/wiki/LibvirtXMLCPUModel</a></p>
+
+<p>几个有用的资源：</p>
+
+<p>陈沙克日志：<a href="http://www.chenshake.com/">http://www.chenshake.com/</a>  国内OpenStack大牛</p>
+
+<p>puppet-openstack: <a href="https://github.com/stackforge/puppet-openstack">https://github.com/stackforge/puppet-openstack</a> Puppet部署模块，正式环境大规模部署我计划用这个</p>
+
+<p>Ubuntu OpenStack包地址: <a href="http://ubuntu-cloud.archive.canonical.com/ubuntu/dists/precise-updates/">http://ubuntu-cloud.archive.canonical.com/ubuntu/dists/precise-updates/</a> 包括最新的Havana测试版也在，回头试试。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[批量转换文件编码]]></title>

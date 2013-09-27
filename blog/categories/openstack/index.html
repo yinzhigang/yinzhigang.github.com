@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>批量转换文件编码 - 殷志刚</title>
+  <title>Category: OpenStack - 殷志刚</title>
   <meta name="author" content="殷志刚">
 
   
-  <meta name="description" content="技术备忘，随想随笔">
+  <meta name="description" content="Category: OpenStack">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zhigang.net/2013/08/batch-convert-encoding.html">
+  <link rel="canonical" href="http://zhigang.netblog/categories/openstack/index.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -90,103 +90,38 @@
   <div class="container">
     <div class="row-fluid">
       
-<article class="hentry span9" role="article">
+<article role="article" class="span9">
 
   
   <header class="page-header">
-    
-      <h1 class="entry-title">批量转换文件编码</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
-        
-      </p>
+    <h1 class="entry-title">Category: OpenStack</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>适用于Linux及 Mac OS 系统，Windows就抱歉了，你们自己想办法吧。</p>
 
-<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; /tmp/iconv.tmp" \; -exec mv /tmp/iconv.tmp '{}' \;
-</code></pre>
+  
+  <h1>2013</h1>
 
-<p>以上命令将所有 .java 文件由GBK编码转换为UTF8编码。</p>
+<article>
+  <div class="well">
 
-<p>注意，网上有很多文章将 iconv 命令写成这样：</p>
+<h2><a href="/2013/09/openstack-install-notes.html">OpenStack安装笔记</a></h2>
+<time datetime="2013-09-26T15:04:00+08:00" pubdate><span class='month'>Sep</span> <span class='day'>26</span> <span class='year'>2013</span></time>
 
-<pre><code>find . -name *.java -exec sh -c "iconv -f GBK -t UTF8 {} &gt; {}" \;
-</code></pre>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/openstack/'>OpenStack</a></span>
+</footer>
 
-<p>再说一句，上面这种写法是错误的，以上写法相当于 iconv 输出到源文件，但不知是BUG还是别的原因，你只能得到0字节的空文件，所以必须使用第一条命令，先生成到一个临时文件，然后再移动回来。</p>
 </div>
 
+</article>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-<span class="byline author vcard">Posted by <span class="fn">殷志刚</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-24T00:18:00+08:00" pubdate data-updated="true">Aug 24<span>th</span>, 2013</time>
-      
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  
-  
 </div>
 
-    
-    
-    <section>
-      <h1>Comments</h1>
-      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-    </section>
-    
-    <ul class="pager">
-      
-      <li class="previous"><a class="basic-alignment left"
-        href="/2013/08/underline-in-jni.html" title="Previous Post:
-        JAVA+jni 包名或方法名中含有下划线(_)的解决方法">&laquo; JAVA+jni 包名或方法名中含有下划线(_)的解决方法</a></li>
-      
-      <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/09/openstack-install-notes.html"
-        title="Next Post: OpenStack安装笔记">OpenStack安装笔记
-        &raquo;</a></li>
-      
-    </ul>
-  </footer>
+  
 </article>
 
 <aside class="sidebar-nav span3">
@@ -262,10 +197,7 @@
       var disqus_shortname = 'yinzhigang';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://zhigang.net/2013/08/batch-convert-encoding.html';
-        var disqus_url = 'http://zhigang.net/2013/08/batch-convert-encoding.html';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
